@@ -1,0 +1,7 @@
+form{
+    width: 50%;
+    height: 50%;
+    border: 1px solid gray;
+    padding: 30px;
+    border-radius: 10px;
+}

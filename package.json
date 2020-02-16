@@ -10,8 +10,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "admin-bro": "^1.6.6",
+    "admin-bro-expressjs": "^0.4.0",
+    "admin-bro-mongoose": "^0.4.0",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-formidable": "^1.2.0",
+    "express-session": "^1.17.0",
     "mongoose": "^5.8.11",
     "nodemon": "^2.0.2"
   }

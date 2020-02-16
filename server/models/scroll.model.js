@@ -4,7 +4,7 @@ const scrollSchema = new mongoose.Schema({
     scrollEquipment: {type: String, required: [true, 'Need to specify equipment!']},
     scrollStat: {type:String , required: [true, 'Need to specify stat!']},
     scrollSuccessRate:{type: Number , required: [true, 'Need to specify success rate!']},
-    scrollPrice: {type: [Number], default: []},
+    scrollPrice: {type: [Number], default: [10]},
 }, {timestamps:true})
 
 const Scroll = mongoose.model("Scroll", scrollSchema)

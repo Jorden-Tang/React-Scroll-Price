@@ -6,3 +6,4 @@ mongoose.connect('mongodb://localhost/ML_helper_db', {
 })
     .then(()=> console.log("Connected ML_helper database! Success!"))
     .catch(err => console.log("data base error", err))
+module.exports = mongoose

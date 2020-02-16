@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Modak|Montserrat:500|Pacifico|Permanent+Marker&display=swap&subset=latin-ext');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+
+.body{
+    text-align: center;
+    width: vw100;
+    height: 100%;
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 30%;
+    width: 100%;
+}
+
+.header h1{
+    font-family: Pacifico;
+    font-size: 4rem;
+}
+.header_img{
+   width: 15%;
+   height: 40%;
+}
+
+Table{
+    border-radius: 10px;
+    border: 0;
+}
+
