@@ -16,8 +16,8 @@ const userSchema = new mongoose.Schema({
         validate: [validateEmail, 'Please fill a valid email address'],
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
-    password: {type: String, required: [true, 'need to have a password']}
+    password: {type: String, required: [true, 'need to have a password']},
+    isAdmin: {type: Boolean, default: false},
 }, {timestamps: true})
-
 const User = mongoose.model("User", userSchema)
 module.exports = User

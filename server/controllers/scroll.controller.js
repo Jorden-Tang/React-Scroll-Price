@@ -4,7 +4,7 @@ const Scroll = require('../models/scroll.model')
 module.exports = {
     createNewScroll(req, res){
         Scroll.create(req.body)
-            .then( (newScroll) => res.json({newScroll: newScroll}))
+            .then( (newScroll) => res.json({result: newScroll}))
             .catch((err) => res.status(400).json({message: "error creating sroll", error: err}))
     },
 

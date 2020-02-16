@@ -9,16 +9,20 @@ app.use(formidableMiddleware());
 // const AdminBro = require('admin-bro')
 // const AdminBroExpress = require('admin-bro-expressjs')
 // const AdminBroMongoose = require('admin-bro-mongoose')
-
+app.use(cors());
 
 //routes
 require('./routes/scroll.route')(app)
+require('./routes/auth.route')(app)
+require('./routes/user.route')(app)
+
+//connect to mongodb
 const mongoose = require('./config/mongoose.config')
 
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(cors());
+
 
 // const User = require("./models/User.model")
 // AdminBro.registerAdapter(AdminBroMongoose)
@@ -47,7 +51,6 @@ app.use(cors());
 // const router = AdminBroExpress.buildRouter(adminBro);
 // app.use(adminBro.options.rootPath, router)
 // require('./config/mongoose.config');
-
 
 app.listen(8000, () => {
     console.log("Listening at Port 8000")
