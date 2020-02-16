@@ -1,7 +1,8 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../static/css/updateDataForm.css'
-const DataForm = (props) =>{
+import "../static/css/AdminLoginForm.css"
+
+const AdminLoginForm = (props) =>{
     return(
         <form>
             <div className = "form-group">
@@ -21,4 +22,4 @@ const DataForm = (props) =>{
         </form>
     )
 }
-export default DataForm;
+export default AdminLoginForm;
