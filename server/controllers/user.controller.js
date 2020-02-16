@@ -1,16 +1,11 @@
-const User = require('../models/User.model')
+const User = require('../models/User.model');
 
 module.exports = {
     createNewUser(req,res){
-        User.create(req.body)
+        console.log(req.body)
+        User.create(req)
             .then((newUser) => res.json({result: newUser}))
-            .catch((err)=> res.result(400).json({message: "error creating new user", error: err}));
-    },
-
-    findUserByEmail(req,res){
-        User.find({email: req.mail})
-            .then((foundUser)=> res.json({result: foundUser}))
-            .catch((err)=> res.status(400).json({message: "error finding user by email", error: err}))
+            .catch((err)=> res.status(400).json({message: "error creating new user", error: err}));
     },
 
     updateUser(req, res){
@@ -24,4 +19,10 @@ module.exports = {
             .then((result)=> res.json({message: "User delete success!", result: result}))
             .catch((err)=>res.status(400).json({message: "error deleting User", error: err}))
     },
+
+    findAllUser(req,res){
+        User.find()
+            .then((all)=> res.json({result: all}))
+            .catch((err)=> res.status(400).json({message: "error getting all user", error: err}))
+    }
 }

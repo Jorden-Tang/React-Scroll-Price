@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../static/css/AdminLoginForm.css"
-import Axios from 'axios';
+import axios from 'axios';
 import { navigate } from '@reach/router';
 
-const AdminLoginForm = (props) =>{
+export default ({sendApiRequest}) =>{
     const [state, setState] = useState({email: "", password: ""});
 
     const onInputChangeHandler = (event) => {
@@ -14,14 +14,14 @@ const AdminLoginForm = (props) =>{
             ...state,
             [name]: value
         })
-
     }
 
     const onFormSubmitHandler = (event) =>{
         event.preventDefault();
-        Axios.post("http://localhost:8000/login", state)
-            .then(()=> navigate('/'))
-            .catch(console.log)
+        console.log(state);
+        sendApiRequest(state)
+            .then(() => navigate("/"))
+            .catch((err)=> console.log)
     }
     return(
         <form onSubmit = {onFormSubmitHandler}>
@@ -38,4 +38,3 @@ const AdminLoginForm = (props) =>{
         </form>
     )
 }
-export default AdminLoginForm;

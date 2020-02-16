@@ -1,16 +1,14 @@
 const Scroll = require('../models/scroll.model')
 
-
 module.exports = {
     createNewScroll(req, res){
         Scroll.create(req.body)
-            .then( (newScroll) => res.json({result: newScroll}))
+            .then( (newScroll) => res.json({newScroll: newScroll}))
             .catch((err) => res.status(400).json({message: "error creating sroll", error: err}))
     },
-
     getAllScroll(req, res){
         Scroll.find()
-            .then(allScroll => res.json({result: allScroll}))
+            .then((allScroll) => res.json({result: allScroll}))
             .catch((err)=> res.status(400).json({message: "error getting all scroll data", error: err}))
     },
     updateScroll(req, res){

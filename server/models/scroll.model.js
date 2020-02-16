@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-
 const scrollSchema = new mongoose.Schema({
     scrollEquipment: {type: String, required: [true, 'Need to specify equipment!']},
     scrollStat: {type:String , required: [true, 'Need to specify stat!']},
