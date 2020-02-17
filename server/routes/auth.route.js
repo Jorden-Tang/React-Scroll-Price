@@ -7,7 +7,14 @@ module.exports = (app) =>{
             if(err) throw err
             user.comparePassword(req.body.password, function(err, isMatch){
                 if(err) throw err;
-                console.log(req.body.password, isMatch);
+                
+                //Temporary response and error handling for password matching
+                if(!isMatch){
+                    throw new Error("Broken")
+                }
+                else{
+                    res.json({good : "good"})
+                }
             })
         })
     })
