@@ -28,10 +28,10 @@ export default ({sendApiRequest}) =>{
                 
                 if('token' in result.data){
                     if(result.data.isAdmin){
-                    
+                        navigate("/")
                     }
                     else{
-
+                        navigate("/")
                     }
                 }
             })
