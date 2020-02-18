@@ -5,8 +5,8 @@ import axios from 'axios';
 import { navigate } from '@reach/router';
 
 export default ({sendApiRequest}) =>{
-    const [state, setState] = useState({email: "", password: ""});
-
+    const [state, setState] = useState({email: "", password: "", errors: []});
+    const [error, setError] = useState([])
     const onInputChangeHandler = (event) => {
         const {name, value} = event.target;
         console.log(event.target.value)
@@ -18,12 +18,30 @@ export default ({sendApiRequest}) =>{
 
     const onFormSubmitHandler = (event) =>{
         event.preventDefault();
-        console.log(state);
+        setError([])
         sendApiRequest(state)
-            .then((result) =>console.log(result))
+            .then((result) =>{
+                console.log(result);
+                if('err' in result.data){
+                    setError(result.data.err);
+                }
+                
+                if('token' in result.data){
+                    if(result.data.isAdmin){
+                    
+                    }
+                    else{
+
+                    }
+                }
+            })
             .catch((err)=> console.log)
     }
     return(
+        <>
+        {error.map((x) =>
+            <p style={{color: "red"}}>{x}</p>
+        )}
         <form onSubmit = {onFormSubmitHandler}>
             <div className = "form-group">
                 <label for="exampleInputEmail1">Email address</label>
@@ -36,5 +54,6 @@ export default ({sendApiRequest}) =>{
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        </>
     )
 }
