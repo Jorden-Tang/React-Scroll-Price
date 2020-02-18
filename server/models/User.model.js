@@ -31,12 +31,8 @@ userSchema.pre('save', function(next){
     });
 });
 
-userSchema.methods.comparePassword = function(inputPassword, cb){
-    bcrypt.compare(inputPassword, this.password, function(err, isMatch){
-        if(err) return cb(err)
-        cb(null, isMatch)
-    });
+userSchema.methods.comparePassword = function(inputPassword){
+    return bcrypt.compare(inputPassword, this.password);
 };
-
 const User = mongoose.model("User", userSchema)
 module.exports = User
