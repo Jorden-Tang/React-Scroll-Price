@@ -18,15 +18,13 @@ const HomePage = (props) => {
                 
                 <Table size="sm"  striped  hover variant = "dark"> 
                     <thead>
+                        <h1>60%</h1>
                         <tr>
-                            <h1>60%</h1>
-                        </tr>
-                        <tr>
-                        <th>Equip</th>
-                        <th>Stat</th>
-                        <th>Min</th>
-                        <th>Avg</th>
-                        <th>Max</th>
+                            <th>Equip</th>
+                            <th>Stat</th>
+                            <th>Min</th>
+                            <th>Avg</th>
+                            <th>Max</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,21 +46,22 @@ const HomePage = (props) => {
                 </Table>
             </Col>
             <Col>
-                <h1>10%</h1>
-                <Table size="sm" striped bordered>
+                
+                <Table size="sm"  striped  hover variant = "dark"> 
                     <thead>
-                        <th>Equip</th>
-                        <th>Stat</th>
-                        <th>%</th>
-                        <th>Min</th>
-                        <th>Avg</th>
-                        <th>Max</th>
+                        <h1>60%</h1>
+                        <tr>
+                            <th>Equip</th>
+                            <th>Stat</th>
+                            <th>Min</th>
+                            <th>Avg</th>
+                            <th>Max</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>glove</td>
                             <td>W.A</td>
-                            <td>60</td>
                             <td>1,500,000</td>
                             <td>2,000,000</td>
                             <td>3,000,000</td>
@@ -70,7 +69,6 @@ const HomePage = (props) => {
                         <tr>
                             <td>glove</td>
                             <td>W.A</td>
-                            <td>60</td>
                             <td>1,500,000</td>
                             <td>2,000,000</td>
                             <td>3,000,000</td>
@@ -78,22 +76,24 @@ const HomePage = (props) => {
                     </tbody>
                 </Table>
             </Col>
+        
             <Col>
-                <h1>10%</h1>
-                <Table size="sm" striped bordered>
+                
+                <Table size="sm"  striped  hover variant = "dark"> 
                     <thead>
-                        <th>Equip</th>
-                        <th>Stat</th>
-                        <th>%</th>
-                        <th>Min</th>
-                        <th>Avg</th>
-                        <th>Max</th>
+                        <h1>60%</h1>
+                        <tr>
+                            <th>Equip</th>
+                            <th>Stat</th>
+                            <th>Min</th>
+                            <th>Avg</th>
+                            <th>Max</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>glove</td>
                             <td>W.A</td>
-                            <td>60</td>
                             <td>1,500,000</td>
                             <td>2,000,000</td>
                             <td>3,000,000</td>
@@ -101,7 +101,6 @@ const HomePage = (props) => {
                         <tr>
                             <td>glove</td>
                             <td>W.A</td>
-                            <td>60</td>
                             <td>1,500,000</td>
                             <td>2,000,000</td>
                             <td>3,000,000</td>
@@ -109,22 +108,24 @@ const HomePage = (props) => {
                     </tbody>
                 </Table>
             </Col>
+        
             <Col>
-                <h1>10%</h1>
-                <Table size="sm" striped bordered>
+                
+                <Table size="sm"  striped  hover variant = "dark"> 
                     <thead>
-                        <th>Equip</th>
-                        <th>Stat</th>
-                        <th>%</th>
-                        <th>Min</th>
-                        <th>Avg</th>
-                        <th>Max</th>
+                        <h1>60%</h1>
+                        <tr>
+                            <th>Equip</th>
+                            <th>Stat</th>
+                            <th>Min</th>
+                            <th>Avg</th>
+                            <th>Max</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>glove</td>
                             <td>W.A</td>
-                            <td>60</td>
                             <td>1,500,000</td>
                             <td>2,000,000</td>
                             <td>3,000,000</td>
@@ -132,7 +133,6 @@ const HomePage = (props) => {
                         <tr>
                             <td>glove</td>
                             <td>W.A</td>
-                            <td>60</td>
                             <td>1,500,000</td>
                             <td>2,000,000</td>
                             <td>3,000,000</td>
@@ -140,22 +140,23 @@ const HomePage = (props) => {
                     </tbody>
                 </Table>
             </Col>
+        
             <Col>
-                <h1>Misc</h1>
-                <Table size="sm" striped bordered>
+                <Table size="sm"  striped  hover variant = "dark"> 
                     <thead>
-                        <th>Equip</th>
-                        <th>Stat</th>
-                        <th>%</th>
-                        <th>Min</th>
-                        <th>Avg</th>
-                        <th>Max</th>
+                        <h1>60%</h1>
+                        <tr>
+                            <th>Equip</th>
+                            <th>Stat</th>
+                            <th>Min</th>
+                            <th>Avg</th>
+                            <th>Max</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>glove</td>
                             <td>W.A</td>
-                            <td>60</td>
                             <td>1,500,000</td>
                             <td>2,000,000</td>
                             <td>3,000,000</td>
@@ -163,7 +164,6 @@ const HomePage = (props) => {
                         <tr>
                             <td>glove</td>
                             <td>W.A</td>
-                            <td>60</td>
                             <td>1,500,000</td>
                             <td>2,000,000</td>
                             <td>3,000,000</td>
@@ -171,37 +171,8 @@ const HomePage = (props) => {
                     </tbody>
                 </Table>
             </Col>
-            <Col>
-                <h1>10%</h1>
-                <Table size="sm" striped bordered>
-                    <thead>
-                        <th>Equip</th>
-                        <th>Stat</th>
-                        <th>%</th>
-                        <th>Min</th>
-                        <th>Avg</th>
-                        <th>Max</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>glove</td>
-                            <td>W.A</td>
-                            <td>60</td>
-                            <td>1,500,000</td>
-                            <td>2,000,000</td>
-                            <td>3,000,000</td>
-                        </tr>
-                        <tr>
-                            <td>glove</td>
-                            <td>W.A</td>
-                            <td>60</td>
-                            <td>1,500,000</td>
-                            <td>2,000,000</td>
-                            <td>3,000,000</td>
-                        </tr>
-                    </tbody>
-                </Table>
-            </Col>
+        
+        
         </Row>
         </Container>
         </div>

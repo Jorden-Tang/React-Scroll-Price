@@ -20,7 +20,7 @@ export default ({sendApiRequest}) =>{
         event.preventDefault();
         console.log(state);
         sendApiRequest(state)
-            .then(() => navigate("/"))
+            .then((result) =>console.log(result))
             .catch((err)=> console.log)
     }
     return(
