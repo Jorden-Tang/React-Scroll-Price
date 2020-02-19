@@ -12,29 +12,35 @@ module.exports = (app) =>{
         }
         const user = await User.findOne({email: req.body.email});
         if(user === null){
-            errors.push("this email is not registered")
+            errors.push("Incorrect Credentials")
         }
         else{
             let isMatch = await user.comparePassword(req.body.password)
             console.log(isMatch)
             if(!isMatch){
-                    errors.push("incorrect password");
+                    errors.push("Incorrect Credentials");
             }
             else{
                 if(user.isAdmin){
                     jwt.sign({user:user}, 'super_admin_key', {expiresIn: '7d'}, (err, token)=> {
-                        res.json({token: token, isAdmin: user.isAdmin})
+                        // res.json({token: token, isAdmin: user.isAdmin})
+                        console.log("haha")
+                        res.cookie("myCookie", token, {httpOnly: true}).json({
+                            isAuth: true,
+                        })
                     })
                 }
                 else{
                     jwt.sign({user:user}, 'user_key', {expiresIn: '7d'}, (err, token)=> {
-                        res.json({token: token, isAdmin: user.isAdmin})
+                        res.cookie("myCookie", token, {httpOnly: true}).json({
+                            isAuth: false,
+                        })
                     })
                 }
             }
         }
-
-        
-        res.json({err: errors})
+        if(errors.length > 0){
+            res.json({err: errors})
+        }
     })
 }

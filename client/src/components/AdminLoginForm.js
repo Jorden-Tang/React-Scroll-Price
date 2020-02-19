@@ -25,14 +25,8 @@ export default ({sendApiRequest}) =>{
                 if('err' in result.data){
                     setError(result.data.err);
                 }
+                if('isAuth' in result.data){
                 
-                if('token' in result.data){
-                    if(result.data.isAdmin){
-                        navigate("/")
-                    }
-                    else{
-                        navigate("/")
-                    }
                 }
             })
             .catch((err)=> console.log)
