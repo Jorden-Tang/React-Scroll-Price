@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
+import ReactDOM from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../static/css/AdminLoginForm.css"
 import axios from 'axios';
 import { navigate } from '@reach/router';
+import AdminPage from '../views/AdminLoginPage';
 
 export default ({sendApiRequest}) =>{
     const [state, setState] = useState({email: "", password: "", errors: []});
@@ -25,8 +27,14 @@ export default ({sendApiRequest}) =>{
                 if('err' in result.data){
                     setError(result.data.err);
                 }
+                console.log(result.data.isAuth)
                 if('isAuth' in result.data){
-                
+                    if(result.data.isAuth){
+                        navigate("/")
+                    }
+                    else{
+                        navigate("/")
+                    }
                 }
             })
             .catch((err)=> console.log)
