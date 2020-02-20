@@ -1,6 +1,6 @@
 import React from 'react'
 import AdminLoginForm from '../components/AdminLoginForm'
-import "../static/css/AdminPage.css"
+import "../static/css/AdminLoginPage.css"
 import axios from 'axios'
 
 const AdminPage = (props) =>{
@@ -10,7 +10,6 @@ const AdminPage = (props) =>{
     }
     return(
         <div id = "body">
-            <h1>Admin Login</h1>
             <AdminLoginForm sendApiRequest = {sendApiRequest}></AdminLoginForm>
         </div>
     )

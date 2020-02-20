@@ -9,10 +9,10 @@
 
 .body{
     text-align: center;
-    width: vw100;
-    height: 100%;
+    width: 100vw;
+    height: auto;
     background-image: url("../images/background.jpg");
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     background-attachment: fixed;
     background-size: cover;
 }
@@ -28,11 +28,12 @@
 
 .header h1{
     font-family: Pacifico;
-    font-size: 4rem;
+    font-size: 5vw;
+    color: gray;
 }
 .header_img{
-   width: 15%;
-   height: 40%;
+    width: 20%;
+    height:auto;
 }
 
 Table{

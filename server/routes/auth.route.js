@@ -16,7 +16,7 @@ module.exports = (app) =>{
         }
         else{
             let isMatch = await user.comparePassword(req.body.password)
-            console.log(isMatch)
+            // console.log(isMatch)
             if(!isMatch){
                     errors.push("Incorrect Credentials");
             }
