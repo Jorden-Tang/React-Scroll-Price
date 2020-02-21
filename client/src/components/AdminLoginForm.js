@@ -60,8 +60,7 @@ export default ({sendApiRequest}) =>{
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
                 </> 
-                :  
-                <AdminPage></AdminPage>
+                :  <AdminPage></AdminPage>
             }
         </div>
         </>
