@@ -29,7 +29,7 @@ export default ({sendApiRequest}) =>{
                     setError(result.data.err);
                 }
                 // console.log(auth)
-                console.log(result.data.isAuth)
+                console.log("admin auth is " + result.data.isAuth)
                 if('isAuth' in result.data){
                     if(!result.data.isAuth){
                         navigate("/")

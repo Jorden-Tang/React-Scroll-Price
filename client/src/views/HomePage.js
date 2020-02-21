@@ -15,7 +15,6 @@ const HomePage = (props) => {
         <Container fluid>
         <Row>
             <Col>
-                
                 <Table size="sm"  striped  hover variant = "dark"> 
                     <thead>
                         <h1>60%</h1>
