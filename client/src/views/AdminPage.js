@@ -31,6 +31,7 @@ const AdminPage = (props) =>{
                 .then(console.log)
                 .catch(console.log)
         })
+        setData({scrolls: []})
     }
     const addOneScroll = (e) =>{
         e.preventDefault();
