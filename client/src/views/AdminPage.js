@@ -25,11 +25,10 @@ const AdminPage = (props) =>{
 
     const onSubmitHandler = (e) =>{
         e.preventDefault()
-        data.scrolls.forEach(function(item, index){
-            console.log(item)
-            sendApiRequest(item)
-                .then(console.log)
-                .catch(console.log)
+        data.scrolls.forEach( async function(item, index){
+            await sendApiRequest(item)
+                .then(()=>{})
+                .catch()
         })
         setData({scrolls: []})
     }

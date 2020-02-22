@@ -29,7 +29,7 @@
 .header h1{
     font-family: Pacifico;
     font-size: 5vw;
-    color: gray;
+    color: black;
 }
 .header_img{
     width: 20%;
@@ -39,5 +39,9 @@
 Table{
     border-radius: 10px;
     border: 0;
+}
+
+#timeStampNote{
+    font-family: Pacifico;
 }
 

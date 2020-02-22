@@ -2,7 +2,7 @@ const scrollController = require('../controllers/scroll.controller')
 const checkToken = require("../middleWare/checkToken")
 
 module.exports = (app) => {
-    app.post("/api/scroll",checkToken, scrollController.createNewScroll);
+    app.post("/api/scroll", checkToken, scrollController.createOrUpdateScroll);
     app.get("/api/scroll", scrollController.getAllScroll);
     app.get("/api/scroll/:equipment", scrollController.findScrollByEquipment);
     app.delete("/api/scroll/:id/delete", checkToken, scrollController.deleteScroll);
