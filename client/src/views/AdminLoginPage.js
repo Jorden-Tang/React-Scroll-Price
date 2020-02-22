@@ -6,7 +6,7 @@ import axios from 'axios'
 const AdminPage = (props) =>{
 
     function sendApiRequest(data) {
-        return axios.post("http://localhost:8000/login", data, {withCredentials: true});
+        return axios.post("http://localhost:8000/api/login", data, {withCredentials: true});
     }
     return(
         <div id = "body">
