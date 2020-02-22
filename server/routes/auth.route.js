@@ -3,10 +3,9 @@ const User = require("../models/User.model")
 const jwt = require('jsonwebtoken')
 
 module.exports = (app) =>{
-    app.post("/login", async (req, res) =>{
+    app.post("/api/login", async (req, res) =>{
         const {email, password} = req.body;
         let errors = [];
-        let isMatch = null;
         if(!email || !password ){
             errors.push("please fill in email and password");
         }
@@ -21,14 +20,14 @@ module.exports = (app) =>{
             }
             else{
                 if(user.isAdmin){
-                    jwt.sign({user:user}, 'super_admin_key', {expiresIn: '7d'}, (err, token)=> {
+                    jwt.sign({user:user}, 'super_admin_key', {expiresIn: '2d'}, (err, token)=> {
                         res.cookie("myCookie", token, {httpOnly: true}).json({
                             isAuth: true,
                         })
                     })
                 }
                 else{
-                    jwt.sign({user:user}, 'user_key', {expiresIn: '7d'}, (err, token)=> {
+                    jwt.sign({user:user}, 'user_key', {expiresIn: '2d'}, (err, token)=> {
                         res.cookie("myCookie", token, {httpOnly: true}).json({
                             isAuth: false,
                         })
