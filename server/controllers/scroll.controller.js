@@ -29,11 +29,22 @@ module.exports = {
             .catch((err)=>res.status(400).json({message: "error finding scrolls by equipment type", error: err}))
     },
     async createOrUpdateScroll(req, res){
-        const {scrollEquipment, scrollStat, scrollPrice, scrollSuccessRate} = req.body;
+       const {scrollEquipment, scrollStat, scrollPrice, scrollSuccessRate} = req.body;
        let result = await Scroll.findOne({scrollEquipment: scrollEquipment, scrollStat: scrollStat, scrollSuccessRate})
         if(result){
             result.scrollPrice.push(scrollPrice);
-            result.scrollPrice.sort();
+            result.scrollPrice.sort(function(a,b){
+                if(a > b){
+                    return 1;
+                }
+                else if(a < b){
+                    return -1;
+                }
+                else{
+                    return 0;
+                }
+            });
+            console.log(result.scrollPrice)
             result.save();
         }
         else{
