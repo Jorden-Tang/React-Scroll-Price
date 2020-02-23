@@ -16,7 +16,6 @@ app.use(express.urlencoded({extended: true}));
 
 //connect to mongodb
 require('./config/mongoose.config')
-
 //routes
 require('./routes/scroll.route')(app)
 require('./routes/auth.route')(app)

@@ -1,15 +1,15 @@
 import React, {useState} from 'react'
-import ReactDOM from 'react'
+import {useHistory} from 'react-router-dom'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../static/css/AdminLoginForm.css"
-import axios from 'axios';
-import { navigate } from '@reach/router';
-import AdminPage from '../views/AdminPage';
+import auth from '../auth/auth'
 
 export default ({sendApiRequest}) =>{
     const [state, setState] = useState({email: "", password: "", errors: []});
     const [error, setError] = useState([])
-    const [auth, setAuth] = useState(false)
+    const history = useHistory();
+
     const onInputChangeHandler = (event) => {
         const {name, value} = event.target;
         console.log(event.target.value)
@@ -19,33 +19,34 @@ export default ({sendApiRequest}) =>{
         })
     }
 
-    const onFormSubmitHandler = (event) =>{
+    const onFormSubmitHandler = async (event) =>{
         event.preventDefault();
         setError([])
         sendApiRequest(state)
             .then((result) =>{
-                // console.log(result);
                 if('err' in result.data){
                     setError(result.data.err);
                 }
-                // console.log(auth)
-                console.log("admin auth is " + result.data.isAuth)
-                if('isAuth' in result.data){
-                    if(!result.data.isAuth){
-                        navigate("/")
+                if('isAdmin' in result.data){
+                    if(result.data.isAdmin){
+                        auth.adminLogin();
+                        history.push("/admin")
                     }
-                    setAuth(result.data.isAuth)
                 }
+                console.log("else!")
             })
             .catch((err)=> console.log)
+            
+        // let result = await auth.adminLogin(state, ()=>{
+        //     history.push("/admin")
+        // })
+        // console.log(result);
     }
     return(
         <>
         {error.map((x) =>
                     <p style={{color: "red"}}>{x}</p>       
         )}
-        <div>{!auth ?
-                <>
                 <h1>Admin Login</h1>
                 <form onSubmit = {onFormSubmitHandler}>
                     <div className = "form-group">
@@ -59,10 +60,6 @@ export default ({sendApiRequest}) =>{
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-                </> 
-                :  <AdminPage></AdminPage>
-            }
-        </div>
         </>
      
     )

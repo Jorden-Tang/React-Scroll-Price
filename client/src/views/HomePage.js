@@ -3,6 +3,8 @@ import Table from 'react-bootstrap/Table'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
+import UserLoginForm from '../components/UserLoginForm'
+
 import "../static/css/HomePage.css"
 import axios from 'axios'
 const HomePage = (props) => {
@@ -23,8 +25,10 @@ const HomePage = (props) => {
     if(scrollData.scrolls.length === 0){
         return(<p>Loading</p>)
     }
+
     return(
         <div className = "body">
+        <UserLoginForm></UserLoginForm>
         <div className = "header">
             <img className = "header_img" src = {require("../static/images/Mushroom.png")}></img>
             <div style= {{display: "flex", flexDirection: "column", justifyContent: "space-around"} }>
@@ -34,7 +38,6 @@ const HomePage = (props) => {
                 <span></span>
                 <span><span style = {{color: "#66ff00"}}>Green</span>(Fressshhh!)</span>
                 </div>
-              
             </div>
             <img className = "header_img"  src = {require("../static/images/Slime.png")}></img>
         </div>
@@ -69,7 +72,6 @@ const HomePage = (props) => {
             </Table>
         </Col>
             ])}
-
             <Col>
                 <Table size="sm"  striped  hover variant = "dark"> 
                     <thead>
