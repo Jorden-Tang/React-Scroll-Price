@@ -5,11 +5,10 @@ import UserUpdateForm from '../components/UserUpdateForm'
 
 const AdminPage = (props) =>{
     return(
-        <>
-        <h2>Weclome Almighty Admin</h2>
+        <div style={{width: "100vw",height: "auto", display:"flex", justifyContent: "center", flexDirection:"column"}}>
         <ScrollUpdateForm path="/"></ScrollUpdateForm>
         {/* <UserUpdateForm path="/user"></UserUpdateForm> */}
-        </>
+        </div>
     )
 }
 export default AdminPage
