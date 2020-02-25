@@ -78,6 +78,8 @@ const ScrollUpdateForm = (props) =>{
                             <MenuItem value={"clean1"}>clean1</MenuItem>
                             <MenuItem value={"clean20"}>clean20</MenuItem>
                             <MenuItem value={"dagger"}>dagger</MenuItem>
+                            <MenuItem value={"earring"}>earring</MenuItem>
+                            <MenuItem value={"face"}>face</MenuItem>
                             <MenuItem value={"staff"}>staff</MenuItem>
                             <MenuItem value={"shield"}>shield</MenuItem>
                             <MenuItem value={"spear"}>spear</MenuItem> 
