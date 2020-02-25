@@ -25,7 +25,7 @@ const HomePage = (props) => {
     if(scrollData.scrolls.length === 0){
         return(<p>Loading</p>)
     }
-
+    
     return(
         <div className = "body">
         <UserLoginForm></UserLoginForm>
@@ -91,7 +91,7 @@ const HomePage = (props) => {
                                 <td>{v.scrollEquipment}</td>
                                 <td>{v.scrollStat}</td>
                                 {v.scrollPrice[0] < 1000000 ? <td>{(v.scrollPrice[0]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[0]/1000000).toFixed(1) + "M"}</td> }
-                                {v.scrollPrice[(v.scrollPrice.length - 1)/2] < 1000000 ? <td>{(v.scrollPrice[(v.scrollPrice.length - 1)/2]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[(v.scrollPrice.length - 1)/2]/1000000).toFixed(1) + "M"}</td> } 
+                                {v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)] < 1000000 ? <td>{(v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)]/1000000).toFixed(1) + "M"}</td> }
                                 {v.scrollPrice[v.scrollPrice.length - 1] < 1000000 ? <td>{(v.scrollPrice[v.scrollPrice.length - 1]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[v.scrollPrice.length - 1]/1000000).toFixed(1) + "M"}</td> } 
                                 </tr>
                             ]

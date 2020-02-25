@@ -25,7 +25,7 @@ function App() {
      <BrowserRouter>
         <Route exact path="/" component={HomePage}></Route>
         <Route exact path="/login" component={AdminLoginPage}></Route>
-        <Route exact path="/admin" component={AdminPage}/>
+        <AdminProtectedRoute exact path="/admin" component={AdminPage}/>
         <UserProtectedRoute exact path="/dashboard" component = {UserPage}/>
      </BrowserRouter>
     </div>

@@ -68,29 +68,37 @@ const ScrollUpdateForm = (props) =>{
                             <MenuItem value={"2hsword"}>2hsword</MenuItem>
                             <MenuItem value={"2haxe"}>2haxe</MenuItem>
                             <MenuItem value={"2hbw"}>2hbw</MenuItem>
+                            <MenuItem value={"onyx"}>Onyx</MenuItem>
                             <MenuItem value={"bow"}>bow</MenuItem>
+                            <MenuItem value={"bottom"}>bottom</MenuItem>
                             <MenuItem value={"xbow"}>xbow</MenuItem>
+                            <MenuItem value={"cape"}>cape</MenuItem>
                             <MenuItem value={"claw"}>claw</MenuItem>
+                            <MenuItem value={"chaos"}>chaos</MenuItem>
+                            <MenuItem value={"clean1"}>clean1</MenuItem>
+                            <MenuItem value={"clean20"}>clean20</MenuItem>
                             <MenuItem value={"dagger"}>dagger</MenuItem>
-                            <MenuItem value={"spear"}>spear</MenuItem>
-                            <MenuItem value={"pole"}>pole</MenuItem>
-                            <MenuItem value={"wand"}>wand</MenuItem>
                             <MenuItem value={"staff"}>staff</MenuItem>
-                            <MenuItem value={"knuckle"}>knuckle</MenuItem>
+                            <MenuItem value={"shield"}>shield</MenuItem>
+                            <MenuItem value={"spear"}>spear</MenuItem> 
+                            <MenuItem value={"shoes"}>shoes</MenuItem>
+                            <MenuItem value={"pole"}>pole</MenuItem>
+                            <MenuItem value={"glove"}>glove</MenuItem>
                             <MenuItem value={"gun"}>gun</MenuItem>
+                            <MenuItem value={"wand"}>wand</MenuItem>
+                            <MenuItem value={"knuckle"}>knuckle</MenuItem>
                             <MenuItem value={"overall"}>overall</MenuItem>
                             <MenuItem value={"top"}>top</MenuItem>
-                            <MenuItem value={"bottom"}>bottom</MenuItem>
-                            <MenuItem value={"glove"}>glove</MenuItem>
-                            <MenuItem value={"shoes"}>shoes</MenuItem>
-                            <MenuItem value={"cape"}>cape</MenuItem>
-                            <MenuItem value={"shield"}>shield</MenuItem>
+                            <MenuItem value={"xbow"}>xbow</MenuItem>
+            
+
                         </Select>
                     </FormControl>
             
                     <FormControl>
                         <InputLabel id="stat"  >Stat</InputLabel>
                         <Select className ="Select" labelId ="stat"  name = "scrollStat"  onChange = {(e) => {onInputHandler(e, i)}}>
+                            <MenuItem value={"misc"}>misc</MenuItem>
                             <MenuItem value={"wa"}>wa</MenuItem>
                             <MenuItem value={"ma"}>ma</MenuItem>
                             <MenuItem value={"int"}>int</MenuItem>
@@ -111,6 +119,7 @@ const ScrollUpdateForm = (props) =>{
                     <FormControl>
                     <InputLabel id="demo-simple-select-filled-label"  >Percent</InputLabel>
                     <Select className ="Select" labelId="demo-simple-select-filled-label" name = "scrollSuccessRate"   label="%"  onChange = {(e) => {onInputHandler(e, i)}}>
+                        
                         <MenuItem value={10}>10</MenuItem>
                         <MenuItem value={30}>30</MenuItem>
                         <MenuItem value={60}>60</MenuItem>
@@ -132,8 +141,6 @@ const ScrollUpdateForm = (props) =>{
             <Button style={{width:"100px", fontSize: "1.5rem"}} variant="contained" color="primary" href="#contained-buttons" onClick = {addOneScroll}>+</Button>
             <Button style={{width:"100px", fontSize: "1.5rem"}} onClick ={onSubmitHandler} variant="contained" color="primary" href="#contained-buttons">Submit</Button>
             </div>
-            
-           
         </body>
         </>
     )
