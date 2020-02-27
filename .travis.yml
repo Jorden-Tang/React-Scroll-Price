@@ -1,38 +1,4 @@
 language: node_js
-node_js: 
-  - node
-
-cache:
-  directories:
-    - node_modules
-
-deploy:
-- provider: s3
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
-  local_dir: dpl_cd_upload
-  skip_cleanup: true
-  on: &2
-    repo: github.com/Jorden-Tang/React-Scroll-Price
-  bucket: fruitscrollsitestorage
-  region: us-west-1
-- provider: codedeploy
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
-  bucket: fruitscrollsitestorage
-  key: latest.zip
-  bundle_type: zip
-  application: FruitScrollGuide
-  deployment_group: travis_scroll_deploy_group
-  region: us-west-1
-  on: *2
-
-script:
-  - zip -r latest *
-  - mkdir -p dpl_cd_upload
-  - mv latest.zip dpl_cd_upload/latest.zip
-
-language: node_js
 node_js:
 - node
 services:
@@ -47,7 +13,7 @@ deploy:
   local_dir: dpl_cd_upload
   skip_cleanup: true
   on: &2
-    repo: github.com/Jorden-Tang/React-Scroll-Price
+    repo: Jorden-Tang/React-Scroll-Price
   bucket: fruitscrollstorage
   region: us-west-1
 - provider: codedeploy
