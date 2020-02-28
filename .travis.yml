@@ -1,75 +1,34 @@
-language: node_js
-node_js:
-- node
-services:
-- mongodb
-cache:
-  directories:
-    - node_modules
-deploy:
-- provider: s3
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
-  local_dir: dpl_cd_upload
-  skip_cleanup: true
-  on: &2
-    repo: Jorden-Tang/React-Scroll-Price
-  bucket: fruitscrollstorage
-  region: us-west-1
-- provider: codedeploy
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
-  bucket: fruitscrollstorage
-  key: latest.zip
-  bundle_type: zip
-  application: FruitScrollGuide
-  deployment_group: fruit-deploy
-  region: us-west-1
-  on: *2
-script:
-  - zip -r latest *
-  - mkdir -p dpl_cd_upload
-  - mv latest.zip dpl_cd_upload/latest.zip
+# language: node_js
+# node_js:
+# - node
+# services:
+# - mongodb
+# cache:
+#   directories:
+#     - node_modules
 
-after_deploy:
-  - sudo apt update
-  - sudo apt install nodejs npm nginx git -y
-  - export repoName=fruitScrollSite
-  - cd ~/$repoName
-  - npm i
-  - sudo rm -rf /var/www/html
-  - sudo mv build /var/www/html
-  - sudo service nginx restart
-  - sudo grep -rl localhost /var/www/html | xargs sed -i 's/http:\/\/localhost:8000//g'
-  - wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
-  - echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
-  - sudo apt update
-  - sudo apt install -y mongodb-org
-  - sudo service mongod start
-  - service mongod status
-  - sudo rm /etc/nginx/sites-available/default
-  - sudo touch /etc/nginx/sites-available/default
-  - echo "server {
-          listen 80 default_server;
-          listen [::]:80 default_server;
-          root /var/www/html;
-          index index.html index.htm index.nginx-debian.html;
-          server_name MERN-Deployment;
-          location /api {
-              proxy_pass http://localhost:8000;
-              proxy_http_version 1.1;
-              proxy_set_header Upgrade $http_upgrade;
-              proxy_set_header Connection 'upgrade';
-              proxy_set_header Host $host;
-              proxy_cache_bypass $http_upgrade;    
-          }
-          location / {
-              try_files $uri $uri/ =404;
-          }
-          error_page 404 /index.html;
-      }" >> /etc/nginx/sites-available/default
-  - cd ~/$repoName
-  - sudo service nginx restart
-  - sudo npm i pm2 -g
-  - pm2 start server.js
-  - pm2 status
+
+# deploy:
+# - provider: s3
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: $AWS_SECRET_KEY
+#   local_dir: dpl_cd_upload
+#   skip_cleanup: true
+#   on: &2
+#     repo: Jorden-Tang/React-Scroll-Price
+#   bucket: fruitscrollstorage
+#   region: us-west-1
+# - provider: codedeploy
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: $AWS_SECRET_KEY
+#   bucket: fruitscrollstorage
+#   key: latest.zip
+#   bundle_type: zip
+#   application: FruitScrollGuide
+#   deployment_group: fruit-deploy
+#   region: us-west-1
+#   on: *2
+# script:
+#   - zip -r latest *
+#   - mkdir -p dpl_cd_upload
+#   - mv latest.zip dpl_cd_upload/latest.zip
