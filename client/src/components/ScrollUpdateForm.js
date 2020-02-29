@@ -79,6 +79,7 @@ const ScrollUpdateForm = (props) =>{
                             <MenuItem value={"clean20"}>clean20</MenuItem>
                             <MenuItem value={"dagger"}>dagger</MenuItem>
                             <MenuItem value={"earring"}>earring</MenuItem>
+                            <MenuItem value={"helmet"}>helmet</MenuItem>
                             <MenuItem value={"eye"}>eye</MenuItem>
                             <MenuItem value={"face"}>face</MenuItem>
                             <MenuItem value={"staff"}>staff</MenuItem>
@@ -94,9 +95,6 @@ const ScrollUpdateForm = (props) =>{
                             <MenuItem value={"top"}>top</MenuItem>
                             <MenuItem value={"xbow"}>xbow</MenuItem>
                             <MenuItem value={"pet"}>pet</MenuItem>
-                            
-            
-
                         </Select>
                     </FormControl>
             
