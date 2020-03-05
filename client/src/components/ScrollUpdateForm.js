@@ -7,8 +7,6 @@ import FormControl from '@material-ui/core/FormControl'
 import Button from '@material-ui/core/Button'
 import InputLabel from '@material-ui/core/InputLabel'
 import axios from 'axios'
-import {navigate} from '@reach/router'
-
 
 const ScrollUpdateForm = (props) =>{
     const [data, setData] = useState({
@@ -44,8 +42,8 @@ const ScrollUpdateForm = (props) =>{
         e.preventDefault()
         data.scrolls.forEach( async function(item, index){
             await sendApiRequest(item)
-                .then(()=>{})
-                .catch()
+                .then(()=>{console.log("success")})
+                .catch((err)=> console.log)
         })
         setData({scrolls: []})
     }
@@ -137,7 +135,6 @@ const ScrollUpdateForm = (props) =>{
                         <TextField  onKeyDown={handleEnter} name = "scrollPrice"  label="Price"  onChange = {(e) => {onInputHandler(e, i)}}/>
                     </FormControl>
                     <Button style={{width:"100px", fontSize: "1.5rem"}} variant="contained" color="secondary" href="#contained-buttons" onClick = {(e)=> {removeEntry(e, i)}}>-</Button>
-       
                 </div>
                 ]
              )}

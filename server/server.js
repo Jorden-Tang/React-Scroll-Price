@@ -3,6 +3,7 @@ const app = express ();
 const cors = require('cors');
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
+var session = require('express-session')
 
 // We have to tell AdminBro that we will manage mongoose resources with it
 // const AdminBro = require('admin-bro')
