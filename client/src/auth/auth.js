@@ -8,23 +8,8 @@ class Auth{
     login(){
         this.authenticated = true;
     }
-
-    adminLogin(){
+    adminLogin(state){
         this.adminAuth = true;
-        // const error = [];
-        // axios.post("http://localhost:8000/api/login", userData, {withCredentials: true})
-        //     .then((result)=>{
-        //         if('err' in result.data){
-        //             return result.data.err;
-        //         }
-        //         if('isAdmin' in result.data){
-        //             if(result.data.isAdmin){
-        //                 this.adminAuth = true;
-        //                 cb();
-        //             }
-        //         }
-        //     })
-        //     .catch(console.log)
     }
 
     logout(){
@@ -35,12 +20,20 @@ class Auth{
         this.adminAuth = false;
     }
 
-    isAuth(){
-        return (this.authenticated)
+   isAuth(){
+        axios.post("http://localhost:8000/api/checkUserLogin", {}, {withCredentials: true})
+        .then((result)=>{this.authenticated = result.data.isAuth})
+        .catch(console.log)
+        console.log("use is " + this.authenticated)
+        return this.authenticated;
     }
 
     isAdminAuth(){
-        return (this.adminAuth);
+        axios.post("http://localhost:8000/api/checkAdminLogin",{}, {withCredentials: true})
+        .then((result)=>{this.adminLogin = result.data.isAdmin})
+        .catch(console.log)
+        console.log("admin is " + this.adminAuth)
+        return this.adminAuth;
     }
 }
 export default new Auth();

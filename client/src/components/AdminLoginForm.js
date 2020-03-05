@@ -33,14 +33,11 @@ export default ({sendApiRequest}) =>{
                         history.push("/admin")
                     }
                 }
-                console.log("else!")
+                else{
+                    console.log("else")
+                }
             })
             .catch((err)=> console.log)
-            
-        // let result = await auth.adminLogin(state, ()=>{
-        //     history.push("/admin")
-        // })
-        // console.log(result);
     }
     return(
         <>
