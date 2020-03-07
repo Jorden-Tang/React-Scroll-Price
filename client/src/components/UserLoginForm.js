@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button'
 import "../static/css/UserLoginForm.css"
 import axios from 'axios'
 import auth from "../auth/auth"
+import jwt from 'jsonwebtoken'
 
 const UserLoginForm = (props) =>{
     const [userData, setUserData] = useState({email: "", password: ""})
@@ -30,7 +31,8 @@ const UserLoginForm = (props) =>{
                 }
                 if('isAuth' in result.data){
                     if(result.data.isAuth){
-                        auth.login();
+                        // auth.login();
+                        localStorage.setItem("user_id", result.data.user_id)
                         history.push("/dashboard")
                     }
                 }

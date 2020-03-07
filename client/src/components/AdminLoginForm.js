@@ -29,7 +29,9 @@ export default ({sendApiRequest}) =>{
                 }
                 if('isAdmin' in result.data){
                     if(result.data.isAdmin){
-                        auth.adminLogin();
+                        // auth.adminLogin();
+                        localStorage.setItem("admin_id", result.data.user_id)
+                        localStorage.setItem("user_id", result.data.user_id)
                         history.push("/admin")
                     }
                 }
