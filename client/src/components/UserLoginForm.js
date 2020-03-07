@@ -33,7 +33,7 @@ const UserLoginForm = (props) =>{
                     if(result.data.isAuth){
                         // auth.login();
                         localStorage.setItem("user_id", result.data.user_id)
-                        history.push("/dashboard")
+                        history.push("/")
                     }
                 }
                 

@@ -4,12 +4,15 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import UserLoginForm from '../components/UserLoginForm'
+import LogOutButton from '../components/LogOutButton'
+import auth from '../auth/auth'
 
 import "../static/css/HomePage.css"
 import axios from 'axios'
 const HomePage = (props) => {
     const [scrollData, setScrollData] = useState({scrolls: []});
     const percentArray = [10, 30, 60, 70, 100];
+    const [login, setLogin] = useState(false)
 
     function sendApiRequest(data) {
         return axios.get("http://localhost:8000/api/scroll", {}, {withCredentials: true});
@@ -28,7 +31,8 @@ const HomePage = (props) => {
     
     return(
         <div className = "body">
-        <UserLoginForm></UserLoginForm>
+        {auth.isAuth() ?  <LogOutButton></LogOutButton> : <UserLoginForm></UserLoginForm>}
+       
         <div className = "header">
             <img className = "header_img" src = {require("../static/images/Mushroom.png")}></img>
             <div style= {{display: "flex", flexDirection: "column", justifyContent: "space-around"} }>
