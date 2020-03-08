@@ -63,12 +63,12 @@ const HomePage = (props) => {
                 <tbody>
                 {(scrollData.scrolls).filter(scroll=> scroll.scrollSuccessRate === percent && scroll.scrollStat != "misc").map((v, i) =>
                [
-                <tr key = {i} style ={v.updatedAt < new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) ? {color: "ff0066", fontSize: "1rem", fontWeight: "600"} : {color: "#66ff00", fontSize: "1rem", fontWeight: "600"}}>
+                <tr key = {i} style ={(Date.parse(v.updatedAt) < Date.now() - 14 * 24 * 60 * 60 * 1000) ? {color: "#ff0066", fontSize: "1rem", fontWeight: "600"} : {color: "#00ff66", fontSize: "1rem", fontWeight: "600"}}>
                 <td>{v.scrollEquipment.toUpperCase()}</td>
                 <td>{v.scrollStat.toUpperCase()}</td>
                 {v.scrollPrice[0] < 1000000 ? <td>{(v.scrollPrice[0]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[0]/1000000).toFixed(1) + "M"}</td> }
                 {v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)] < 1000000 ? <td>{(v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)]/1000000).toFixed(1) + "M"}</td> }
-                {v.scrollPrice[v.scrollPrice.length - 1] < 1000000 ? <td>{(v.scrollPrice[v.scrollPrice.length - 1]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[v.scrollPrice.length - 1]/1000000).toFixed(1) + "M"}</td> } 
+                {v.scrollPrice[v.scrollPrice.length - 1] < 1000000 ? <td>{(v.scrollPrice[v.scrollPrice.length - 1]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[v.scrollPrice.length - 1]/1000000).toFixed(1) + "M"}</td> }
                 </tr>
                ]
             )}
