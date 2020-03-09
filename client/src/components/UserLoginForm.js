@@ -40,6 +40,11 @@ const UserLoginForm = (props) =>{
             })
             .catch(console.log)
     }
+
+    const navToRegister = (e) =>{
+        e.preventDefault();
+        history.push("/registration")
+    }
     return(
         <div id = "container">
             <FormControl  class = "form-group" style= {{display: "flex", justifyContent: "center", marginRight: "1vw", marginTop: "1vw"}}>
@@ -55,6 +60,7 @@ const UserLoginForm = (props) =>{
                 </>
                 }
                 <Button onClick = {onSubmitHandler} variant="contained" style={{backgroundColor: "orange"}} href="#contained-buttons">Login</Button>
+                <Button onClick = {navToRegister} variant="contained" style={{backgroundColor: "orange"}} href="#contained-buttons">Register</Button>
         </FormControl>
         </div>
     )

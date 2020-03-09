@@ -13,6 +13,7 @@ import AdminPage from './views/AdminPage'
 import NotFoundPage from './views/NotFoundPage'
 import AdminLoginPage from './views/AdminLoginPage'
 import UserPage from './views/UserPage'
+import UserRegPage from './views/UserRegistrationPage'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
      <BrowserRouter>
         <Route exact path="/" component={HomePage}></Route>
         <Route exact path="/login" component={AdminLoginPage}></Route>
+        <Route exact path="/registration" component = {UserRegPage}></Route>
         <AdminProtectedRoute exact path="/admin" component={AdminPage}/>
         <UserProtectedRoute exact path="/dashboard" component = {UserPage}/>
      </BrowserRouter>

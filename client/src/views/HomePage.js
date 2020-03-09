@@ -32,7 +32,6 @@ const HomePage = (props) => {
     return(
         <div className = "body">
         {auth.isAuth() ?  <LogOutButton></LogOutButton> : <UserLoginForm></UserLoginForm>}
-       
         <div className = "header">
             <img className = "header_img" src = {require("../static/images/Mushroom.png")}></img>
             <div style= {{display: "flex", flexDirection: "column", justifyContent: "space-around"} }>
