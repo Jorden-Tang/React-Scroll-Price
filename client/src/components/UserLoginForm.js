@@ -23,7 +23,6 @@ const UserLoginForm = (props) =>{
 
     const onSubmitHandler =(e) =>{
         e.preventDefault();
-        setUserData({email: "", password: ""});
         axios.post("http://localhost:8000/api/login", userData, {withCredentials: true})
             .then((result)=>{
                 if('err' in result.data){
@@ -36,7 +35,6 @@ const UserLoginForm = (props) =>{
                         history.push("/")
                     }
                 }
-                
             })
             .catch(console.log)
     }
@@ -59,9 +57,11 @@ const UserLoginForm = (props) =>{
                 <TextField  type = "password" name = "password" value = {userData.password} label="password" style={{fontSize: "1rem", color: "white"}} onChange = {onInputHandler}/>
                 </>
                 }
+        </FormControl>
+        <>
                 <Button onClick = {onSubmitHandler} variant="contained" style={{backgroundColor: "orange"}} href="#contained-buttons">Login</Button>
                 <Button onClick = {navToRegister} variant="contained" style={{backgroundColor: "orange"}} href="#contained-buttons">Register</Button>
-        </FormControl>
+                </>
         </div>
     )
 

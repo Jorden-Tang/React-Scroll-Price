@@ -2,7 +2,6 @@ const User = require('../models/User.model');
 
 module.exports = {
     createNewUser(req,res){
-        console.log(req.body)
         User.create(req.body)
             .then((newUser) => res.json({result: newUser}))
             .catch((err)=> res.status(400).json({message: "error creating new user", error: err}));

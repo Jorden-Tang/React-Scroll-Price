@@ -12,7 +12,7 @@ export default ({sendApiRequest}) =>{
 
     const onInputChangeHandler = (event) => {
         const {name, value} = event.target;
-        console.log(event.target.value)
+        // console.log(event.target.value)
         setState({
             ...state,
             [name]: value
