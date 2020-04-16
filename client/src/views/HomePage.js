@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import UserLoginForm from '../components/UserLoginForm'
-import LogOutButton from '../components/LogOutButton'
+import NavBar from '../components/NavBar'
 import auth from '../auth/auth'
 
 import "../static/css/HomePage.css"
@@ -23,7 +23,7 @@ const HomePage = (props) => {
             .then((result)=>{
                 setScrollData({scrolls: result.data.result});
             })
-            .catch(console.log("WTF"))
+            .catch(console.log)
     }, [])
     if(scrollData.scrolls.length === 0){
         return(<p>Loading</p>)
@@ -31,7 +31,7 @@ const HomePage = (props) => {
     
     return(
         <div className = "body">
-        {auth.isAuth() ?  <LogOutButton></LogOutButton> : <UserLoginForm></UserLoginForm>}
+        {auth.isAuth() ?  <NavBar/> : <UserLoginForm></UserLoginForm>}
         <div className = "header">
             <img className = "header_img" src = {require("../static/images/Mushroom.png")}></img>
             <div style= {{display: "flex", flexDirection: "column", justifyContent: "space-around"} }>
@@ -90,7 +90,7 @@ const HomePage = (props) => {
                     <tbody>
                         {(scrollData.scrolls).filter(scroll=> scroll.scrollStat == "misc").map((v, i) =>
                             [
-                                <tr key = {i} style ={v.updatedAt < new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) ? {color: "ff0066", fontSize: "1rem", fontWeight: "900", fontWeight: "600"} : {color: "#66ff00", fontSize: "1rem", fontWeight: "600"} }>
+                                <tr key = {i} style ={(Date.parse(v.updatedAt) < Date.now() - 14 * 24 * 60 * 60 * 1000) ? {color: "#ff0066", fontSize: "1rem", fontWeight: "600"} : {color: "#00ff66", fontSize: "1rem", fontWeight: "600"}}>
                                 <td>{v.scrollEquipment.toUpperCase()}</td>
                                 <td>{v.scrollStat.toUpperCase()}</td>
                                 {v.scrollPrice[0] < 1000000 ? <td>{(v.scrollPrice[0]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[0]/1000000).toFixed(1) + "M"}</td> }

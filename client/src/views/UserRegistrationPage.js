@@ -9,6 +9,7 @@ import axios from 'axios'
 const UserRegPage = (props) => {
     const [userData, setUserData] = useState({name: "", email: "", password: "", repeatPassword: ""});
     const [error, setError] = useState([])
+    const [uniqueErrors, setUniqueErrors] = useState([])
     const history = useHistory();
     
     const onInputHandler = (event) =>{
@@ -41,18 +42,20 @@ const UserRegPage = (props) => {
                     for(const key in err.response.data.error.errors){
                         errorArr.push(err.response.data.error.errors[key].message)
                     }
+                    // console.log(err.response)
+                    if(err.response.data.error.errmsg){
+                        errorArr.push("This Email is registered")
+                    }
                     setError(errorArr);
                 })
         }
     }
     return(
     <div id = "reg-container">
-        <div>
-        {error.map((x) =>
-                    <p style={{color: "red", fontStyle: "bold"}}>{x}</p>       
-        )}
-        </div>
         <FormControl id = "reg-form" class = "form-group" style= {{display: "flex", flexDirection: "column", justifyContent: "center", marginRight: "1vw", marginTop: "1vw"}}>
+            {error.map((x, i) =>
+                        <p key = {i} style={{color: "red", fontStyle: "bold"}}>{x}</p>       
+            )}
             <TextField onChange = {onInputHandler} name = "name"   label="Name" ></TextField>
             <TextField onChange = {onInputHandler} type = "email" name = "email"   label="Email"></TextField>
             <TextField onChange = {onInputHandler} type = "password" name = "password" label="password"></TextField>

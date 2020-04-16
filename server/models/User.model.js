@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
+const uniqueValidator = require('mongoose-unique-validator');
 const SALT_WORK_FACTOR = 10
 
 const userSchema = new mongoose.Schema({
@@ -8,11 +9,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true,
         lowercase: true,
-        unique: true,
+        unique: [true, 'This Email is already registered'],
         required: 'Email address is required',
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
     },
-    password: {type: String, required: [true, 'need to have a password']},
+    password: {
+        type: String, 
+        minlength: [8, 'password has to be at least 8 characters in length'],
+        required: [true, 'need to have a password'], 
+        },
     isAdmin: {type: Boolean, default: false},
 }, {timestamps: true});
 

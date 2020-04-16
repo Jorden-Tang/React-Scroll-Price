@@ -1,0 +1,10 @@
+#NavBar_container{
+    width: 100%;
+    padding-top: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
