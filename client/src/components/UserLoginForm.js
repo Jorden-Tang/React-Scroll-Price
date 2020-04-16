@@ -17,7 +17,6 @@ const UserLoginForm = (props) =>{
         e.preventDefault();
         setErrorBool(false);
         const {name, value} = e.target;
-        console.log(e.target)
         setUserData({...userData, [name]: value})
     }
 

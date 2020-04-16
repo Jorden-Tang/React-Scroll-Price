@@ -9,7 +9,6 @@ import axios from 'axios'
 const UserRegPage = (props) => {
     const [userData, setUserData] = useState({name: "", email: "", password: "", repeatPassword: ""});
     const [error, setError] = useState([])
-    const [uniqueErrors, setUniqueErrors] = useState([])
     const history = useHistory();
     
     const onInputHandler = (event) =>{
@@ -23,7 +22,7 @@ const UserRegPage = (props) => {
 
     const onFormSubmitHandler = (event) =>{
         event.preventDefault();
-        if(userData.password != userData.repeatPassword){
+        if(userData.password !== userData.repeatPassword){
             setError(["password doesn't match with repeat password"])
         }
         else{
@@ -52,15 +51,18 @@ const UserRegPage = (props) => {
     }
     return(
     <div id = "reg-container">
-        <FormControl id = "reg-form" class = "form-group" style= {{display: "flex", flexDirection: "column", justifyContent: "center", marginRight: "1vw", marginTop: "1vw"}}>
+        <FormControl id = "reg-form" class = "form-group" style= {{display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center", marginRight: "1vw", marginTop: "1vw"}}>
             {error.map((x, i) =>
                         <p key = {i} style={{color: "red", fontStyle: "bold"}}>{x}</p>       
             )}
-            <TextField onChange = {onInputHandler} name = "name"   label="Name" ></TextField>
-            <TextField onChange = {onInputHandler} type = "email" name = "email"   label="Email"></TextField>
-            <TextField onChange = {onInputHandler} type = "password" name = "password" label="password"></TextField>
-            <TextField onChange = {onInputHandler} type ="password" name = "repeatPassword" label="Repeat password"></TextField>
-            <Button onClick = {onFormSubmitHandler} style = {{width: "100px", height: "200px"}} variant="contained" style={{backgroundColor: "orange"}} href="#contained-buttons">Submit</Button>
+            <TextField onChange = {onInputHandler} name = "name"   label="Name" style={{width: "100%"}}></TextField>
+            <TextField onChange = {onInputHandler} type = "email" name = "email"   label="Email" style={{width: "100%"}}></TextField>
+            <TextField onChange = {onInputHandler} type = "password" name = "password" label="password" style={{width: "100%"}}></TextField>
+            <TextField onChange = {onInputHandler} type ="password" name = "repeatPassword" label="Repeatpassword" style={{width: "100%"}}></TextField>
+            <div style = {{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-evenly"}}>
+            <Button onClick = {onFormSubmitHandler} style = {{width: "150px", height: "50px", backgroundColor: "orange"}} variant="contained"  href="#contained-buttons">Submit :)</Button>
+            <Button onClick = {()=> {history.push("/")}} style = {{width: "150px", height: "50px", backgroundColor: "orange"}} variant="contained"  href="#contained-buttons">Go Back :(</Button>
+            </div>
         </FormControl>
     </div>
     )

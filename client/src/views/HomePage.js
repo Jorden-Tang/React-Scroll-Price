@@ -12,7 +12,6 @@ import axios from 'axios'
 const HomePage = (props) => {
     const [scrollData, setScrollData] = useState({scrolls: []});
     const percentArray = [10, 30, 60, 70, 100];
-    const [login, setLogin] = useState(false)
 
     function sendApiRequest(data) {
         return axios.get("http://localhost:8000/api/scroll", {}, {withCredentials: true});
@@ -33,7 +32,7 @@ const HomePage = (props) => {
         <div className = "body">
         {auth.isAuth() ?  <NavBar/> : <UserLoginForm></UserLoginForm>}
         <div className = "header">
-            <img className = "header_img" src = {require("../static/images/Mushroom.png")}></img>
+            <img className = "header_img" src = {require("../static/images/Mushroom.png")} alt = "mushmom"></img>
             <div style= {{display: "flex", flexDirection: "column", justifyContent: "space-around"} }>
                 <h1>Fruit's Scroll Side</h1>
                 <div id = "timeStampNote" style = {{fontSize: "2vw", display: "flex", justifyContent: "space-around"}} >
@@ -42,7 +41,7 @@ const HomePage = (props) => {
                 <span><span style = {{color: "#66ff00"}}>Green</span>(Fressshhh!)</span>
                 </div>
             </div>
-            <img className = "header_img"  src = {require("../static/images/Slime.png")}></img>
+            <img className = "header_img"  src = {require("../static/images/Slime.png")} alt = "slime"></img>
         </div>
         <Container fluid>
         <Row>
@@ -60,7 +59,7 @@ const HomePage = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                {(scrollData.scrolls).filter(scroll=> scroll.scrollSuccessRate === percent && scroll.scrollStat != "misc").map((v, i) =>
+                {(scrollData.scrolls).filter(scroll=> scroll.scrollSuccessRate === percent && scroll.scrollStat !== "misc").map((v, i) =>
                [
                 <tr key = {i} style ={(Date.parse(v.updatedAt) < Date.now() - 14 * 24 * 60 * 60 * 1000) ? {color: "#ff0066", fontSize: "1rem", fontWeight: "600"} : {color: "#00ff66", fontSize: "1rem", fontWeight: "600"}}>
                 <td>{v.scrollEquipment.toUpperCase()}</td>

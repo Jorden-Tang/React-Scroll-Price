@@ -1,9 +1,9 @@
-import React, {useState, useEffect}from 'react'
-import {Router, Link} from '@reach/router'
+import React from 'react'
+// import {Router, Link} from '@reach/router'
 import ScrollUpdateForm from '../components/ScrollUpdateForm'
-import UserUpdateForm from '../components/UserUpdateForm'
-import auth from '../auth/auth'
-import {useHistory} from 'react-router-dom'
+// import UserUpdateForm from '../components/UserUpdateForm'
+// import auth from '../auth/auth'
+// import {useHistory} from 'react-router-dom'
 
 const AdminPage = (props) =>{
     // const history = useHistory();
