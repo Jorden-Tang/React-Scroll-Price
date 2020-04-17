@@ -13,6 +13,14 @@ const UserLoginForm = (props) =>{
     const [errorBool, setErrorBool] = useState(false)
     const history = useHistory();
 
+    //handles key press events
+    const keyPress = (e) =>{
+        if(e.key === "Enter"){
+            onSubmitHandler(e);
+        }
+    }
+
+    //handles input events
     const onInputHandler = (e) =>{
         e.preventDefault();
         setErrorBool(false);
@@ -20,6 +28,8 @@ const UserLoginForm = (props) =>{
         setUserData({...userData, [name]: value})
     }
 
+    //submit function for user login form
+    //makes axios post request with user confidentials
     const onSubmitHandler =(e) =>{
         e.preventDefault();
         axios.post("http://localhost:8000/api/login", userData, {withCredentials: true})
@@ -44,7 +54,7 @@ const UserLoginForm = (props) =>{
     }
     return(
         <div id = "container">
-            <FormControl  class = "form-group" style= {{display: "flex", justifyContent: "center", marginRight: "1vw", marginTop: "1vw"}}>
+            <FormControl onKeyDown = {keyPress}   class = "form-group" style= {{display: "flex", justifyContent: "center", marginRight: "1vw", marginTop: "1vw"}}>
                 {errorBool ?
                 <>
                 <TextField error helperText="Incorrect Credentials" name = "email" value = {userData.email}   label="email" onChange ={onInputHandler}/> 
@@ -56,11 +66,9 @@ const UserLoginForm = (props) =>{
                 <TextField  type = "password" name = "password" value = {userData.password} label="password" style={{fontSize: "1rem", color: "white"}} onChange = {onInputHandler}/>
                 </>
                 }
-        </FormControl>
-        <>
-                <Button onClick = {onSubmitHandler} variant="contained" style={{backgroundColor: "orange"}} href="#contained-buttons">Login</Button>
+            </FormControl>
+            <Button type = "Submit" onClick = {(e) => {onSubmitHandler(e)}} variant="contained" style={{backgroundColor: "orange"}} href="#contained-buttons">Login</Button>
                 <Button onClick = {navToRegister} variant="contained" style={{backgroundColor: "orange"}} href="#contained-buttons">Register</Button>
-                </>
         </div>
     )
 
