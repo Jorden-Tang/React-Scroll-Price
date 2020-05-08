@@ -31,7 +31,18 @@ module.exports = {
     async createOrUpdateScroll(req, res){
        const {scrollEquipment, scrollStat, scrollPrice, scrollSuccessRate} = req.body;
        let result = await Scroll.findOne({scrollEquipment: scrollEquipment, scrollStat: scrollStat, scrollSuccessRate})
+        // if such scroll already exist
         if(result){
+            if(result.scrollPrice.length === 5){
+                //when price trend is decreasing
+                if(scrollPrice < result.scrollPrice[2]){
+                    result.scrollPrice.pop();
+                }
+                //when price trend is increasing
+                else{
+                    result.scrollPrice.shift();
+                }
+            }
             result.scrollPrice.push(scrollPrice);
             result.scrollPrice.sort(function(a,b){
                 if(a > b){
@@ -46,6 +57,7 @@ module.exports = {
             });
             result.save();
         }
+        //such scroll doesn't exist
         else{
             Scroll.create(req.body)
                 .then( (newScroll) => res.json({newScroll: newScroll}))
