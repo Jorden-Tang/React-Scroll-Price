@@ -28,10 +28,16 @@ const ScrollUpdateForm = (props) =>{
 
     const removeEntry = (e, i)=>{
         e.preventDefault();
-        data.scrolls.splice(i,1);
-        
-        setData({scrolls: data.scrolls})
+        setData({scrolls: data.scrolls.filter((scroll, index) => index !== i)})
 
+    }
+
+    const copyEntry = (e, i)=>{
+        e.preventDefault();
+        console.log(data.scrolls[i])
+        data.scrolls.splice(i, 0, data.scrolls[i]);
+        setData({ scrolls: data.scrolls });
+ 
     }
 
     function sendApiRequest(data) {
@@ -59,7 +65,7 @@ const ScrollUpdateForm = (props) =>{
                     <div key = {i} style = {{width: "100vw", height: "50px", display: "flex", flexDirection: "row"}}>
                     <FormControl>
                         <InputLabel id="equip"  >Equip</InputLabel>
-                        <Select className ="Select" labelId ="equip"  name = "scrollEquipment"  onChange = {(e) => {onInputHandler(e, i)}}>
+                        <Select className ="Select" labelId ="equip"  name = "scrollEquipment" value = {v.scrollEquipment}  onChange = {(e) => {onInputHandler(e, i)}}>
                             <MenuItem value={"1hsword"}>1hsword</MenuItem>
                             <MenuItem value={"1haxe"}>1haxe</MenuItem>
                             <MenuItem value={"1hbw"}>1hbw</MenuItem>
@@ -99,7 +105,7 @@ const ScrollUpdateForm = (props) =>{
             
                     <FormControl>
                         <InputLabel id="stat"  >Stat</InputLabel>
-                        <Select className ="Select" labelId ="stat"  name = "scrollStat"  onChange = {(e) => {onInputHandler(e, i)}}>
+                        <Select className ="Select" labelId ="stat"  name = "scrollStat" value = {v.scrollStat}  onChange = {(e) => {onInputHandler(e, i)}}>
                             <MenuItem value={"misc"}>misc</MenuItem>
                             <MenuItem value={"wa"}>wa</MenuItem>
                             <MenuItem value={"ma"}>ma</MenuItem>
@@ -120,8 +126,7 @@ const ScrollUpdateForm = (props) =>{
 
                     <FormControl>
                     <InputLabel id="demo-simple-select-filled-label"  >Percent</InputLabel>
-                    <Select className ="Select" labelId="demo-simple-select-filled-label" name = "scrollSuccessRate"   label="%"  onChange = {(e) => {onInputHandler(e, i)}}>
-                        
+                    <Select className ="Select" labelId="demo-simple-select-filled-label"  value = {v.scrollSuccessRate} name = "scrollSuccessRate"   label="%"  onChange = {(e) => {onInputHandler(e, i)}}>
                         <MenuItem value={10}>10</MenuItem>
                         <MenuItem value={30}>30</MenuItem>
                         <MenuItem value={60}>60</MenuItem>
@@ -132,9 +137,10 @@ const ScrollUpdateForm = (props) =>{
                     </Select>
                     </FormControl>
                     <FormControl>
-                        <TextField  onKeyDown={handleEnter} name = "scrollPrice"  label="Price"  onChange = {(e) => {onInputHandler(e, i)}}/>
+                        <TextField  onKeyDown={handleEnter} name = "scrollPrice"  label="Price" value = {v.scrollPrice}  onChange = {(e) => {onInputHandler(e, i)}}/>
                     </FormControl>
                     <Button style={{width:"100px", fontSize: "1.5rem"}} variant="contained" color="secondary" href="#contained-buttons" onClick = {(e)=> {removeEntry(e, i)}}>-</Button>
+                    <Button style={{width:"100px", fontSize: "1.5rem"}} variant="contained" color="secondary" href="#contained-buttons" onClick = {(e)=> {copyEntry(e, i)}}>copy</Button>
                 </div>
                 ]
              )}
