@@ -29,39 +29,43 @@ module.exports = {
             .catch((err)=>res.status(400).json({message: "error finding scrolls by equipment type", error: err}))
     },
     async createOrUpdateScroll(req, res){
-       const {scrollEquipment, scrollStat, scrollPrice, scrollSuccessRate} = req.body;
-       let result = await Scroll.findOne({scrollEquipment: scrollEquipment, scrollStat: scrollStat, scrollSuccessRate})
+       const scrolls = req.body.scrolls;
+       scrolls.forEach( async (scroll)=>{
+        const {scrollEquipment, scrollStat, scrollPrice, scrollSuccessRate} = scroll;
+        let result = await Scroll.findOne({scrollEquipment: scrollEquipment, scrollStat: scrollStat, scrollSuccessRate})
+        console.log(result)
         // if such scroll already exist
-        if(result){
-            if(result.scrollPrice.length === 5){
-                //when price trend is decreasing
-                if(scrollPrice < result.scrollPrice[2]){
-                    result.scrollPrice.pop();
-                }
-                //when price trend is increasing
-                else{
-                    result.scrollPrice.shift();
-                }
-            }
-            result.scrollPrice.push(scrollPrice);
-            result.scrollPrice.sort(function(a,b){
-                if(a > b){
-                    return 1;
-                }
-                else if(a < b){
-                    return -1;
-                }
-                else{
-                    return 0;
-                }
-            });
-            result.save();
-        }
-        //such scroll doesn't exist
-        else{
-            Scroll.create(req.body)
-                .then( (newScroll) => res.json({newScroll: newScroll}))
-                .catch((err) => res.status(400).json({message: "error creating sroll", error: err}))
-        }
+         if(result){
+             if(result.scrollPrice.length === 8){
+                 //when price trend is decreasing
+                 if(scrollPrice < result.scrollPrice[result.scrollPrice.length/2]){
+                     result.scrollPrice.pop();
+                 }
+                 //when price trend is increasing
+                 else{
+                     result.scrollPrice.shift();
+                 }
+             }
+             result.scrollPrice.push(scrollPrice);
+             result.scrollPrice.sort(function(a,b){
+                 if(a > b){
+                     return 1;
+                 }
+                 else if(a < b){
+                     return -1;
+                 }
+                 else{
+                     return 0;
+                 }
+             });
+             result.save();
+         }
+         //such scroll doesn't exist
+         else{
+            await Scroll.create(scroll)
+                 .then( (newScroll) => res.json({newScroll: newScroll}))
+                 .catch((err) => res.status(400).json({message: "error creating sroll", error: err}))
+         }
+       })
     }
 }

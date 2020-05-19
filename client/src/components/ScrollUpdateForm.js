@@ -47,11 +47,12 @@ const ScrollUpdateForm = (props) =>{
 
     const onSubmitHandler = (e) =>{
         e.preventDefault()
-        data.scrolls.forEach( async function(item, index){
-            await sendApiRequest(item)
-                .then(()=>{console.log("success")})
-                .catch((err)=> console.log)
-        })
+        // data.scrolls.forEach( async function(item, index){
+        //     await sendApiRequest(item)
+        //         .then(()=>{console.log("success")})
+        //         .catch((err)=> console.log)
+        // })
+        sendApiRequest(data);
         setData({scrolls: []})
     }
     const addOneScroll = (e) =>{
