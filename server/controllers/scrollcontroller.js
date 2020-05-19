@@ -30,7 +30,7 @@ module.exports = {
     },
     async createOrUpdateScroll(req, res){
        const scrolls = req.body.scrolls;
-       scrolls.forEach(async (scroll)=>{
+       for (const scroll of scrolls){
         const {scrollEquipment, scrollStat, scrollPrice, scrollSuccessRate} = scroll;
         let result = await Scroll.findOne({scrollEquipment: scrollEquipment, scrollStat: scrollStat, scrollSuccessRate})
         console.log(result)
@@ -58,14 +58,14 @@ module.exports = {
                      return 0;
                  }
              });
-             result.save();
+             await result.save();
          }
          //such scroll doesn't exist
          else{
-            Scroll.create(scroll)
+           await Scroll.create(scroll)
                  .then( (newScroll) => res.json({newScroll: newScroll}))
                  .catch((err) => res.status(400).json({message: "error creating sroll", error: err}))
          }
-       })
+       }
     }
 }
