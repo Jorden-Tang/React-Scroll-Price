@@ -35,7 +35,8 @@ const ScrollUpdateForm = (props) =>{
     const copyEntry = (e, i)=>{
         e.preventDefault();
         console.log(data.scrolls[i])
-        data.scrolls.splice(i, 0, data.scrolls[i]);
+        const scrollClone ={...data.scrolls[i]};
+        data.scrolls.splice(i+1, 0, scrollClone);
         setData({ scrolls: data.scrolls });
  
     }
