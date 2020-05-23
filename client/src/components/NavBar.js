@@ -8,15 +8,15 @@ const NavBar = (props) =>{
     const history = useHistory();
     return(
         <div id = "NavBar_container">
-            <div style = {{width: "380px", display: "flex", justifyContent: "space-between"}}>
-            <Button variant="contained" style={{backgroundColor: "orange"}}  onClick = {()=>{ history.push("/dashboard")}}>
-                Dashboard
+            <div class = "nav_bar_link_body">
+            <Button class="nav_bar_link" variant="contained"  onClick = {()=>{ history.push("/dashboard")}}>
+                BOSS PARTY
             </Button>
-            <Button variant="contained" style={{backgroundColor: "orange"}}  onClick = {()=>{window.open("https://maplelegends.com/")}}>
-                MapleLegend
+            <Button class="nav_bar_link" variant="contained"   onClick = {()=>{window.open("https://maplelegends.com/")}}>
+                MAPLELEGEND
             </Button>
-            <Button variant="contained" style={{backgroundColor: "orange"}}  onClick = {()=>{window.open("https://maplelegends.com/lib/")}}>
-                Database
+            <Button class="nav_bar_link" variant="contained"   onClick = {()=>{window.open("https://maplelegends.com/lib/")}}>
+                ML DATABSE
             </Button>
             </div>
             <LogOutButton></LogOutButton>

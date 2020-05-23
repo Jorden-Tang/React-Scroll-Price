@@ -52,13 +52,15 @@ const UserLoginForm = (props) =>{
         e.preventDefault();
         history.push("/registration")
     }
+
+
     return(
         <div id = "container">
-            <FormControl onKeyDown = {keyPress}   class = "form-group" style= {{display: "flex", justifyContent: "center", marginRight: "1vw", marginTop: "1vw"}}>
+            <FormControl id= "user_login_form" onKeyDown = {keyPress}   class = "form-group">
                 {errorBool ?
                 <>
-                <TextField error helperText="Incorrect Credentials" name = "email" value = {userData.email}   label="email" onChange ={onInputHandler}/> 
-                <TextField error helperText="Incorrect Credentials." type = "password" name = "password" value = {userData.password} label="password" style={{fontSize: "1rem", color: "white"}} onChange = {onInputHandler}/>
+                <TextField error  name = "email" value = {userData.email}   label="Email" onChange ={onInputHandler}/> 
+                <TextField error  type = "password" name = "password" value = {userData.password} label="Password" style={{fontSize: "2rem", color: "white", labelRoot: {fontWeight: "bold"}}} onChange = {onInputHandler}/>
                 </>
                 :
                 <>
@@ -66,9 +68,11 @@ const UserLoginForm = (props) =>{
                 <TextField  type = "password" name = "password" value = {userData.password} label="password" style={{fontSize: "1rem", color: "white"}} onChange = {onInputHandler}/>
                 </>
                 }
+               
+                <Button id = "user_login_form_button"type = "Submit" onClick = {(e) => {onSubmitHandler(e)}} variant="contained" style={{height: "45px", marginLeft: "5px",backgroundColor: "orange", fontWeight: "bold"}} href="#contained-buttons">Login</Button>
+                <Button id = "user_login_form_button"onClick = {navToRegister} variant="contained"  style={{height: "45px" ,marginLeft: "5px",backgroundColor: "orange", fontWeight: "bold"}} href="#contained-buttons">Register</Button>
             </FormControl>
-            <Button type = "Submit" onClick = {(e) => {onSubmitHandler(e)}} variant="contained" style={{backgroundColor: "orange"}} href="#contained-buttons">Login</Button>
-                <Button onClick = {navToRegister} variant="contained" style={{backgroundColor: "orange"}} href="#contained-buttons">Register</Button>
+           
         </div>
     )
 
