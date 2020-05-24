@@ -1,7 +1,7 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom'
-import LogOutButton from '../components/LogOutButton'
 import Button from '@material-ui/core/Button'
+
 import "../static/css/NavBar.css"
 
 const NavBar = (props) =>{
@@ -18,8 +18,9 @@ const NavBar = (props) =>{
             <Button class="nav_bar_link" variant="contained"   onClick = {()=>{window.open("https://maplelegends.com/lib/")}}>
                 ML DATABSE
             </Button>
+           
             </div>
-            <LogOutButton></LogOutButton>
+            
         </div>
     )
 }

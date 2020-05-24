@@ -1,7 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
 #NavBar_container{
-    width: 100%;
+    width: 80%;
     padding-top: 1%;
     padding-left: 3%;
     padding-right: 3%;
@@ -12,7 +12,7 @@
 }
 
 .nav_bar_link_body{
-    width: 420px;
+    width: 450px;
     display: flex;
     justify-content: space-between;
     

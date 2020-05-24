@@ -6,17 +6,25 @@ import Container from 'react-bootstrap/Container'
 import UserLoginForm from '../components/UserLoginForm'
 import NavBar from '../components/NavBar'
 import auth from '../auth/auth'
+import LogOutButton from '../components/LogOutButton'
+import TextField from '@material-ui/core/TextField'
 
 import "../static/css/HomePage.css"
 import axios from 'axios'
 const HomePage = (props) => {
     const [scrollData, setScrollData] = useState({scrolls: []});
+    const [keyWord, setKeyword] = useState("");
     const percentArray = [10, 30, 60, 70, 100];
 
     function sendApiRequest(data) {
         return axios.get("http://localhost:8000/api/scroll", {}, {withCredentials: true});
     }
 
+    const onInputSearchHandler = (e) =>{
+        e.preventDefault();
+        setKeyword(e.target.value);
+    }
+    
     useEffect(()=>{
         sendApiRequest()
             .then((result)=>{
@@ -30,7 +38,16 @@ const HomePage = (props) => {
     
     return(
         <div className = "body">
-        {auth.isAuth() ?  <NavBar/> : <UserLoginForm></UserLoginForm>}
+            {auth.isAuth() ?  
+            <div style= {{display: "flex", flexDirection: "row", alignItems: "center", marginRight: "3%" ,width: "100%"}}>
+                <NavBar/>
+                <TextField id="filled-basic" label="Search By Equip" variant="filled" onChange = {onInputSearchHandler} />
+                <LogOutButton></LogOutButton>
+            </div>
+            : <UserLoginForm></UserLoginForm>}
+            
+     
+        
         <div className = "header">
             <img className = "header_img" src = {require("../static/images/Mushroom.png")} alt = "mushmom"></img>
             <div style= {{display: "flex", flexDirection: "column", justifyContent: "space-around"} }>
@@ -59,7 +76,7 @@ const HomePage = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                {(scrollData.scrolls).filter(scroll=> scroll.scrollSuccessRate === percent && scroll.scrollStat !== "misc").map((v, i) =>
+                {(scrollData.scrolls).filter(scroll=> scroll.scrollSuccessRate === percent && scroll.scrollStat !== "misc" && scroll.scrollEquipment.includes(keyWord)).map((v, i) =>
                [
                 <tr key = {i} style ={(Date.parse(v.updatedAt) < Date.now() - 14 * 24 * 60 * 60 * 1000) ? {color: "#ff0066", fontSize: "1rem", fontWeight: "600"} : {color: "#00ff66", fontSize: "1rem", fontWeight: "600"}}>
                 <td>{v.scrollEquipment.toUpperCase()}</td>
