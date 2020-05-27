@@ -9,6 +9,7 @@ class Auth{
     }
     adminLogin(state){
         this.adminAuth = true;
+
     }
 
     logout(){
