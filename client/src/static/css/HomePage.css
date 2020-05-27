@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Modak|Montserrat:500|Pacifico|Permanent+Marker&display=swap&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
+
 
 *{
     margin: 0px;
@@ -27,7 +29,8 @@
 }
 
 .header h1{
-    font-family: Pacifico;
+    font-family: 'Balsamiq Sans', cursive, Pacifico;
+
     font-size: 5vw;
     color: black;
 }
@@ -43,6 +46,10 @@ Table{
 }
 
 #timeStampNote{
-    font-family: Pacifico;
+    font-family: 'Balsamiq Sans', cursive, Pacifico;
 }
 
+.price_row{
+    font-family: 'Balsamiq Sans', cursive, Pacifico;
+    font-size: 1rem;
+}

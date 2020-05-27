@@ -21,6 +21,7 @@ require('./config/mongoose.config')
 require('./routes/scroll.route')(app)
 require('./routes/auth.route')(app)
 require('./routes/user.route')(app)
+require('./routes/event.route')(app)
 
 app.listen(8000, () => {
     console.log("Listening at Port 8000")

@@ -39,28 +39,27 @@ const HomePage = (props) => {
     return(
         <div className = "body">
             {auth.isAuth() ?  
-            <div style= {{display: "flex", flexDirection: "row", alignItems: "center", marginRight: "3%" ,width: "100%"}}>
+            <div style= {{height: "90px",backgroundColor: "rgba(224, 219, 219, 0.5)", display: "flex", flexDirection: "row", alignItems: "center", marginRight: "3%" ,width: "100%"}}>
                 <NavBar/>
-                <TextField id="filled-basic" label="Search By Equip" variant="filled" onChange = {onInputSearchHandler} />
+                <TextField id="filled-basic" label="Search By Equip or Stat" variant="filled"  onChange = {onInputSearchHandler} color="secondary"/>
                 <LogOutButton></LogOutButton>
             </div>
             : <UserLoginForm></UserLoginForm>}
             
-     
         
         <div className = "header">
             <img className = "header_img" src = {require("../static/images/Mushroom.png")} alt = "mushmom"></img>
             <div style= {{display: "flex", flexDirection: "column", justifyContent: "space-around"} }>
                 <h1>Fruit's Scroll Side</h1>
                 <div id = "timeStampNote" style = {{fontSize: "2vw", display: "flex", justifyContent: "space-around"}} >
-                <span><span style = {{color: "#ff0066"}}>Red</span>(OLD AF!)</span> 
+                <span><span style = {{color: "#ff0066"}}>Red</span>[old]</span> 
                 <span></span>
-                <span><span style = {{color: "#66ff00"}}>Green</span>(Fressshhh!)</span>
+                <span><span style = {{color: "#66ff00"}}>Green</span>[less than 1 week]</span>
                 </div>
             </div>
             <img className = "header_img"  src = {require("../static/images/Slime.png")} alt = "slime"></img>
         </div>
-        <Container fluid>
+        <Container fluid class = "data_container" style = {{width: "100%"}}>
         <Row>
             {percentArray.map((percent)=> [
             <Col>
@@ -76,9 +75,9 @@ const HomePage = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                {(scrollData.scrolls).filter(scroll=> scroll.scrollSuccessRate === percent && scroll.scrollStat !== "misc" && scroll.scrollEquipment.includes(keyWord)).map((v, i) =>
+                {(scrollData.scrolls).filter(scroll=> scroll.scrollSuccessRate === percent && scroll.scrollStat !== "misc" && (scroll.scrollEquipment.includes(keyWord.toLowerCase()) || scroll.scrollStat.includes(keyWord.toLowerCase()) )).map((v, i) =>
                [
-                <tr key = {i} style ={(Date.parse(v.updatedAt) < Date.now() - 14 * 24 * 60 * 60 * 1000) ? {color: "#ff0066", fontSize: "1rem", fontWeight: "600"} : {color: "#00ff66", fontSize: "1rem", fontWeight: "600"}}>
+                <tr class = "price_row" key = {i} style ={(Date.parse(v.updatedAt) < Date.now() - 14 * 24 * 60 * 60 * 1000) ? {color: "#ff0066"} : {color: "#00ff66"}}>
                 <td>{v.scrollEquipment.toUpperCase()}</td>
                 <td>{v.scrollStat.toUpperCase()}</td>
                 {v.scrollPrice[0] < 1000000 ? <td>{(v.scrollPrice[0]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[0]/1000000).toFixed(1) + "M"}</td> }
@@ -106,7 +105,7 @@ const HomePage = (props) => {
                     <tbody>
                         {(scrollData.scrolls).filter(scroll=> scroll.scrollStat == "misc").map((v, i) =>
                             [
-                                <tr key = {i} style ={(Date.parse(v.updatedAt) < Date.now() - 21 * 24 * 60 * 60 * 1000) ? {color: "#ff0066", fontSize: "1rem", fontWeight: "600"} : {color: "#00ff66", fontSize: "1rem", fontWeight: "600"}}>
+                                <tr class = "price_row" key = {i} style ={(Date.parse(v.updatedAt) < Date.now() - 21 * 24 * 60 * 60 * 1000) ? {color: "#ff0066"} : {color: "#00ff66"}}>
                                 <td>{v.scrollEquipment.toUpperCase()}</td>
                                 <td>{v.scrollStat.toUpperCase()}</td>
                                 {v.scrollPrice[0] < 1000000 ? <td>{(v.scrollPrice[0]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[0]/1000000).toFixed(1) + "M"}</td> }
