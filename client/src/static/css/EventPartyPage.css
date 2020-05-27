@@ -1,0 +1,105 @@
+#event_party_container{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/event_background.png");
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    text-align: center;
+}
+
+
+#event_party_body{
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+}
+
+
+#event_party_body_header{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly; 
+}
+
+.boss_button{
+    width: 10vw;
+    height: 10vw;
+    min-width: 100px;
+    min-height: 100px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    font-size: 1.7rem;
+    font-weight: bolder;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+
+
+.boss_button:hover{
+    -webkit-box-shadow: 0px 0px 3px 5px #f2e1f2;
+    -moz-box-shadow: 0px 0px 3px 5px #f2e1f2;
+    box-shadow: 0px 0px 3px 5px #f2e1f2; 
+}
+
+#ht{
+    background-image: url("../images/bossIcon/ht.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#zak{
+    background-image: url("../images/bossIcon/zak.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#nt{
+    background-image: url("../images/bossIcon/nt.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#jiao{
+    background-image: url("../images/bossIcon/jiao.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#krex{
+    background-image: url("../images/bossIcon/krex.png");
+    background-size: contain;
+    background-repeat: no-repeat; 
+}
+
+#cwk{
+    background-image: url("../images/bossIcon/cwk.png");
+    background-size: contain;
+    background-repeat: no-repeat; 
+}
+
+#scar{
+    background-image: url("../images/bossIcon/scar.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#toad{
+    background-image: url("../images/bossIcon/toad.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+
+
+
+
+

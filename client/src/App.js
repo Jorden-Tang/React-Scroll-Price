@@ -12,23 +12,18 @@ import HomePage from './views/HomePage'
 import AdminPage from './views/AdminPage'
 import NotFoundPage from './views/NotFoundPage'
 import AdminLoginPage from './views/AdminLoginPage'
-import UserPage from './views/UserPage'
 import UserRegPage from './views/UserRegistrationPage'
+import EventPartyPage from './views/EventPartyPage';
 
 function App() {
   return (
     <div className="App">
-      {/* <Router>
-        <HomePage path="/"></HomePage>
-        <AdminLoginPage path ="/admin"></AdminLoginPage>
-        <NotFound default/>
-     </Router> */}
      <BrowserRouter>
         <Route exact path="/" component={HomePage}></Route>
         <Route exact path="/login" component={AdminLoginPage}></Route>
         <Route exact path="/registration" component = {UserRegPage}></Route>
         <AdminProtectedRoute exact path="/admin" component={AdminPage}/>
-        <UserProtectedRoute exact path="/dashboard" component = {UserPage}/>
+        <UserProtectedRoute exact path="/event" component = {EventPartyPage}/>
      </BrowserRouter>
     </div>
   );

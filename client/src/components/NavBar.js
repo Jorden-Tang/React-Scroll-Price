@@ -9,16 +9,18 @@ const NavBar = (props) =>{
     return(
         <div id = "NavBar_container">
             <div class = "nav_bar_link_body">
-            <Button class="nav_bar_link" variant="contained"  onClick = {()=>{ history.push("/dashboard")}}>
-                BOSS PARTY
+            <Button class="nav_bar_link" variant="contained"  onClick = {()=>{ history.push("/")}}>
+                PRICE GUIDE
+            </Button>
+            <Button class="nav_bar_link" variant="contained"  onClick = {()=>{ history.push("/event")}}>
+                EVENT PARTY
             </Button>
             <Button class="nav_bar_link" variant="contained"   onClick = {()=>{window.open("https://maplelegends.com/")}}>
-                MAPLELEGEND
+                ML WEBSITE
             </Button>
             <Button class="nav_bar_link" variant="contained"   onClick = {()=>{window.open("https://maplelegends.com/lib/")}}>
-                ML DATABSE
+                ML DATABASE
             </Button>
-           
             </div>
             
         </div>
