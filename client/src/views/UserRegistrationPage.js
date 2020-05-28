@@ -41,7 +41,7 @@ const UserRegPage = (props) => {
                     for(const key in err.response.data.error.errors){
                         errorArr.push(err.response.data.error.errors[key].message)
                     }
-                    // console.log(err.response)
+        
                     if(err.response.data.error.errmsg){
                         errorArr.push("This Email is registered")
                     }

@@ -22,7 +22,7 @@ module.exports = (app) =>{
                 if(user.isAdmin){
                     jwt.sign({user_id: user._id}, 'super_admin_key', {expiresIn: '2d'}, (err, token)=> {
                         res.cookie("myCookie", token, {httpOnly: true}).json({
-                            isAuth: true, isAdmin: true, user_id: user._id, token: token
+                            isAuth: true, isAdmin: true, user_id: user._id, admin_id: user._id, token: token
                         })
                     })
                 }

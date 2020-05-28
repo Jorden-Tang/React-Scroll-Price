@@ -20,6 +20,10 @@ const HomePage = (props) => {
         return axios.get("http://localhost:8000/api/scroll", {}, {withCredentials: true});
     }
 
+    function sendApiDeleteRequest(id) {
+        return axios.post("http://localhost:8000/api/scroll/" + id + "/delete", {}, {withCredentials: true});
+    }
+
     const onInputSearchHandler = (e) =>{
         e.preventDefault();
         setKeyword(e.target.value);
@@ -34,6 +38,13 @@ const HomePage = (props) => {
     }, [])
     if(scrollData.scrolls.length === 0){
         return(<p>Loading</p>)
+    }
+
+    const onDeleteRow = (e) =>{
+        e.preventDefault();
+        sendApiDeleteRequest(e.target.value);
+        let temp = scrollData.scrolls.filter(s => s._id !== e.target.value);
+        setScrollData({scrolls: temp});
     }
     
     return(
@@ -59,38 +70,41 @@ const HomePage = (props) => {
             </div>
             <img className = "header_img"  src = {require("../static/images/Slime.png")} alt = "slime"></img>
         </div>
-        <Container fluid class = "data_container" style = {{width: "100%"}}>
-        <Row>
+        
+
+        <Container fluid = "sm" style = {{width: "100%"}}>
+        <Row style= {{display: "flex", justifyContent: "space-evenly"}}>
             {percentArray.map((percent)=> [
-            <Col>
-            <Table size="sm"  striped  hover variant = "dark">
-                <thead>
-                <h1>{percent}%</h1>
-                    <tr>
-                        <th>Equip</th>
-                        <th>Stat</th>
-                        <th>Min</th>
-                        <th>Mid</th>
-                        <th>Max</th>
+                <Col xs= "12" md="6" lg="4" xl="3" > 
+                <Table size="sm"  striped  hover variant = "dark">
+                    <thead>
+                    <h1>{percent}%</h1>
+                        <tr>
+                            <th>Equip</th>
+                            <th>Stat</th>
+                            <th>Min</th>
+                            <th>Mid</th>
+                            <th>Max</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {(scrollData.scrolls).filter(scroll=> scroll.scrollSuccessRate === percent && scroll.scrollStat !== "misc" && (scroll.scrollEquipment.includes(keyWord.toLowerCase()) || scroll.scrollStat.includes(keyWord.toLowerCase()) )).map((v, i) =>
+                [
+                    <tr class = "price_row" key = {i} style ={(Date.parse(v.updatedAt) < Date.now() - 14 * 24 * 60 * 60 * 1000) ? {color: "#ff0066"} : {color: "#00ff66"}}>
+                    <td>{v.scrollEquipment.toUpperCase()}</td>
+                    <td>{v.scrollStat.toUpperCase()}</td>
+                    {v.scrollPrice[0] < 1000000 ? <td>{(v.scrollPrice[0]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[0]/1000000).toFixed(1) + "M"}</td> }
+                    {v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)] < 1000000 ? <td>{(v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)]/1000000).toFixed(1) + "M"}</td> }
+                    {v.scrollPrice[v.scrollPrice.length - 1] < 1000000 ? <td>{(v.scrollPrice[v.scrollPrice.length - 1]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[v.scrollPrice.length - 1]/1000000).toFixed(1) + "M"}</td> }
+                    {auth.isAdminAuth() ?  <td> <button value = {v._id} onClick =  {(e, i) => {onDeleteRow(e,i)}}>Delete</button> </td>  : <td></td>}
                     </tr>
-                </thead>
-                <tbody>
-                {(scrollData.scrolls).filter(scroll=> scroll.scrollSuccessRate === percent && scroll.scrollStat !== "misc" && (scroll.scrollEquipment.includes(keyWord.toLowerCase()) || scroll.scrollStat.includes(keyWord.toLowerCase()) )).map((v, i) =>
-               [
-                <tr class = "price_row" key = {i} style ={(Date.parse(v.updatedAt) < Date.now() - 14 * 24 * 60 * 60 * 1000) ? {color: "#ff0066"} : {color: "#00ff66"}}>
-                <td>{v.scrollEquipment.toUpperCase()}</td>
-                <td>{v.scrollStat.toUpperCase()}</td>
-                {v.scrollPrice[0] < 1000000 ? <td>{(v.scrollPrice[0]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[0]/1000000).toFixed(1) + "M"}</td> }
-                {v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)] < 1000000 ? <td>{(v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)]/1000000).toFixed(1) + "M"}</td> }
-                {v.scrollPrice[v.scrollPrice.length - 1] < 1000000 ? <td>{(v.scrollPrice[v.scrollPrice.length - 1]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[v.scrollPrice.length - 1]/1000000).toFixed(1) + "M"}</td> }
-                </tr>
-               ]
-            )}
-                </tbody>
-            </Table>
-        </Col>
+                ]
+                )}
+                    </tbody>
+                </Table>
+            </Col>
             ])}
-            <Col>
+            <Col xs= "12" md="6" lg="4" xl="3">
                 <Table size="sm"  striped  hover variant = "dark"> 
                     <thead>
                         <h1>Misc</h1>
@@ -111,6 +125,7 @@ const HomePage = (props) => {
                                 {v.scrollPrice[0] < 1000000 ? <td>{(v.scrollPrice[0]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[0]/1000000).toFixed(1) + "M"}</td> }
                                 {v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)] < 1000000 ? <td>{(v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)]/1000000).toFixed(1) + "M"}</td> }
                                 {v.scrollPrice[v.scrollPrice.length - 1] < 1000000 ? <td>{(v.scrollPrice[v.scrollPrice.length - 1]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[v.scrollPrice.length - 1]/1000000).toFixed(1) + "M"}</td> } 
+                                {auth.isAdminAuth() ?  <td> <button value = {v._id} onClick =  {onDeleteRow}>Delete</button> </td>  : <td></td>}
                                 </tr>
                             ]
                         )}

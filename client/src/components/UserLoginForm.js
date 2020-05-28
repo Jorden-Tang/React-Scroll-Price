@@ -38,10 +38,17 @@ const UserLoginForm = (props) =>{
                     setErrorBool(true);
                 }
                 if('isAuth' in result.data){
-                    if(result.data.isAuth){
-                        // auth.login();
+                    if(result.data.isAdmin){
+                        auth.adminLogin();
+                        localStorage.setItem("admin_id", result.data.admin_id)
                         localStorage.setItem("user_id", result.data.user_id)
                         history.push("/")
+                    }
+                    else{
+                        if(result.data.isAuth){
+                            localStorage.setItem("user_id", result.data.user_id)
+                            history.push("/")
+                        }
                     }
                 }
             })

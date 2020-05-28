@@ -37,19 +37,19 @@ class Auth{
         return this.authenticated;
     }
 
-    isAdminAuth(){
+     isAdminAuth (){
         // axios.post("http://localhost:8000/api/checkAdminLogin",{}, {withCredentials: true})
         // .then((result)=>{this.adminLogin = result.data.isAdmin})
         // .catch(console.log)
         // console.log("admin is " + this.adminAuth)
         let admin_id = localStorage.getItem("admin_id")
         if(admin_id){
-            this.isAdminAuth = true;
+            console.log(admin_id);
+            return true;
         }
         else{
-            this.isAdminAuth= false;
+            return false;
         }  
-        return this.isAdminAuth;
     }
 }
 export default new Auth();

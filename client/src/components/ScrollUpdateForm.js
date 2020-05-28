@@ -14,7 +14,6 @@ const ScrollUpdateForm = (props) =>{
     }); 
     const onInputHandler = (e, i) =>{
         e.preventDefault();
-        // console.log(e.target
         let a = data.scrolls.slice(); //creates the clone of the state
         a[i][(e.target.name)] = e.target.value;
         setData({scrolls: a});
@@ -46,11 +45,6 @@ const ScrollUpdateForm = (props) =>{
 
     const onSubmitHandler = (e) =>{
         e.preventDefault()
-        // data.scrolls.forEach( async function(item, index){
-        //     await sendApiRequest(item)
-        //         .then(()=>{console.log("success")})
-        //         .catch((err)=> console.log)
-        // })
         sendApiRequest(data);
         setData({scrolls: []})
     }
