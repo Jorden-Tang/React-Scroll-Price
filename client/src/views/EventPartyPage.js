@@ -3,6 +3,7 @@ import auth from '../auth/auth'
 import NavBar from '../components/NavBar'
 import LogOutButton from '../components/LogOutButton'
 import UserLoginForm from '../components/UserLoginForm'
+import EventForm from '../components/EventForm'
 import '../static/css/EventPartyPage.css'
 
 const EventPartyPage = (props) =>{
@@ -26,6 +27,15 @@ const EventPartyPage = (props) =>{
                     <div id = "toad" class = "boss_button" >TOAD</div>
                     <div id = "krex" class = "boss_button" >KREX</div>
                     <div id = "jiao" class = "boss_button" >JIAO</div>
+                </div>
+            
+                <div id = "event_party_table_form_container">
+                    <div id = "events_table">
+
+                    </div>
+                    <div id = "event_form">
+                        <EventForm></EventForm>
+                    </div>
                 </div>
             </div>
         </div>

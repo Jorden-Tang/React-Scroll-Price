@@ -33,7 +33,6 @@ module.exports = {
        for (const scroll of scrolls){
         const {scrollEquipment, scrollStat, scrollPrice, scrollSuccessRate} = scroll;
         let result = await Scroll.findOne({scrollEquipment: scrollEquipment, scrollStat: scrollStat, scrollSuccessRate})
-        console.log(result)
         // if such scroll already exist
          if(result){
              if(result.scrollPrice.length === 8){

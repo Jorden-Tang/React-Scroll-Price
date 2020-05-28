@@ -1,11 +1,12 @@
 #event_party_container{
     width: 100vw;
-    height: 100vh;
     background-image: url("../images/event_background.png");
     background-repeat: repeat;
     background-attachment: fixed;
     background-size: cover;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -13,12 +14,13 @@
     margin-left: 5vw;
     margin-right: 5vw;
     margin-top: 2vw;
-    margin-bottom: 2vw;
+    width: 100%;
 }
 
 
 #event_party_body_header{
     width: 100%;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -26,10 +28,10 @@
 }
 
 .boss_button{
-    width: 10vw;
-    height: 10vw;
-    min-width: 100px;
-    min-height: 100px;
+    width: 6vw;
+    height: 6vw;
+    min-width: 130px;
+    min-height: 130px;
     margin-bottom: 10px;
     border-radius: 10px;
     display: flex;
@@ -45,6 +47,12 @@
 
 
 .boss_button:hover{
+    -webkit-box-shadow: 0px 0px 3px 5px #f2e1f2;
+    -moz-box-shadow: 0px 0px 3px 5px #f2e1f2;
+    box-shadow: 0px 0px 3px 5px #f2e1f2; 
+}
+
+.boss_button:active{
     -webkit-box-shadow: 0px 0px 3px 5px #f2e1f2;
     -moz-box-shadow: 0px 0px 3px 5px #f2e1f2;
     box-shadow: 0px 0px 3px 5px #f2e1f2; 
@@ -98,6 +106,33 @@
 }
 
 
+#event_party_table_form_container{
+    padding-top: 65px;
+    padding-bottom: 65px;
+    height: auto;
+    width: auto;
+    min-width: 470px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#events_table{
+    width: 55%;
+    min-width: 400px;
+    height: 33vw;
+    min-height: 400px;
+    background-color: yellow;
+}
+
+#event_form{
+    width: 30%;
+    min-width: 400px;
+    height: 30vw;
+    max-height: 500px;
+    min-height: 400px;
+}
 
 
 

@@ -5,7 +5,7 @@ const checkToken = (req, res, next) =>{
     if(req.cookies) {
         console.log(req.cookies.myCookie)
         req.token = req.cookies.myCookie;
-        verifyUserToken (req, res, next, verifyAdminToken)       
+        verifyAdminToken (req, res, next, verifyUserToken)       
     } else {
         //If header is undefined return Forbidden (403)
         res.sendStatus(403)
