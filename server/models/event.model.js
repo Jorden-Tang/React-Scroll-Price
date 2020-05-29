@@ -16,7 +16,6 @@ const eventSchema = new mongoose.Schema({
     hostIGN : {type: String, required: [true, 'please enter host ign'], lowercase: true},
     buyer: [buyerSchema],
     startTime: {type: Date, required:[true, 'need start time for new event']},
-    endTime: {type: Date, required: [true, 'need end time for new event']},
     description: {type: String, lowercase: true},
 }, {timestamps: true});
 

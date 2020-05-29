@@ -75,7 +75,7 @@ const HomePage = (props) => {
         <Container fluid = "sm" style = {{width: "100%"}}>
         <Row style= {{display: "flex", justifyContent: "space-evenly"}}>
             {percentArray.map((percent)=> [
-                <Col xs= "12" md="6" lg="4" xl="3" > 
+                <Col xs= "12" md="6" lg="4" xl="3" style = {{width: "300px"}} > 
                 <Table size="sm"  striped  hover variant = "dark">
                     <thead>
                     <h1>{percent}%</h1>

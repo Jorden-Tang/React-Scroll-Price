@@ -1,3 +1,8 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
 #event_party_container{
     width: 100vw;
     background-image: url("../images/event_background.png");
@@ -28,10 +33,10 @@
 }
 
 .boss_button{
-    width: 6vw;
-    height: 6vw;
-    min-width: 130px;
-    min-height: 130px;
+    width: 8vw;
+    height: 8vw;
+    min-width: 100px;
+    min-height: 100px;
     margin-bottom: 10px;
     border-radius: 10px;
     display: flex;
@@ -50,12 +55,12 @@
     -webkit-box-shadow: 0px 0px 3px 5px #f2e1f2;
     -moz-box-shadow: 0px 0px 3px 5px #f2e1f2;
     box-shadow: 0px 0px 3px 5px #f2e1f2; 
+    cursor: pointer;
 }
 
 .boss_button:active{
-    -webkit-box-shadow: 0px 0px 3px 5px #f2e1f2;
-    -moz-box-shadow: 0px 0px 3px 5px #f2e1f2;
-    box-shadow: 0px 0px 3px 5px #f2e1f2; 
+        color:red;
+        box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
 }
 
 #ht{
