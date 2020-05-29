@@ -1,9 +1,7 @@
 import React from 'react'
 import auth from '../auth/auth'
 import NavBar from '../components/NavBar'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
+import EventTable from '../components/EventTable'
 import LogOutButton from '../components/LogOutButton'
 import UserLoginForm from '../components/UserLoginForm'
 import EventForm from '../components/EventForm'
@@ -34,7 +32,7 @@ const EventPartyPage = (props) =>{
             
                 <div id = "event_party_table_form_container">
                     <div id = "events_table">
-
+                        <EventTable></EventTable>
                     </div>
                     <div id = "event_form">
                         <EventForm></EventForm>
