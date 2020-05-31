@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import auth from '../auth/auth'
 import NavBar from '../components/NavBar'
 import EventTable from '../components/EventTable'
@@ -8,6 +8,10 @@ import EventForm from '../components/EventForm'
 import '../static/css/EventPartyPage.css'
 
 const EventPartyPage = (props) =>{
+    useEffect(()=>{
+        auth.checkExpireToken();
+    }, [])
+
     return(
         <div id="event_party_container" >
             {auth.isAuth() ?  
@@ -19,17 +23,6 @@ const EventPartyPage = (props) =>{
             : <UserLoginForm></UserLoginForm>}
 
             <div id = "event_party_body">
-                <div id = "event_party_body_header">
-                    <div id = "ht" class = "boss_button" >HT</div>
-                    <div id = "zak" class = "boss_button" >ZAK</div>
-                    <div id = "cwk" class = "boss_button" >CWK</div>
-                    <div id = "scar" class = "boss_button" >SCAR</div>
-                    <div id = "nt" class = "boss_button" >NT</div>
-                    <div id = "toad" class = "boss_button" >TOAD</div>
-                    <div id = "krex" class = "boss_button" >KREX</div>
-                    <div id = "jiao" class = "boss_button" >JIAO</div>
-                </div>
-            
                 <div id = "event_party_table_form_container">
                     <div id = "events_table">
                         <EventTable></EventTable>

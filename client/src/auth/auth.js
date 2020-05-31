@@ -28,6 +28,7 @@ class Auth{
         // .then((result)=>{this.authenticated = result.data.isAuth})
         // .catch(console.log)
         // console.log("use is " + this.authenticated)
+
         if(user_id){
             this.authenticated = true;
         }
@@ -36,7 +37,6 @@ class Auth{
         }  
         return this.authenticated;
     }
-
      isAdminAuth (){
         // axios.post("http://localhost:8000/api/checkAdminLogin",{}, {withCredentials: true})
         // .then((result)=>{this.adminLogin = result.data.isAdmin})
@@ -50,6 +50,11 @@ class Auth{
         else{
             return false;
         }  
+    }
+    checkExpireToken(){
+        if(localStorage.getItem("login_time") < Date.now() - 2 * 24 * 60 * 60 * 1000){
+            this.logout();
+        }
     }
 }
 export default new Auth();

@@ -4,7 +4,7 @@ const verifyUserToken = require("./verifyUserToken")
 
 const checkToken = (req, res, next) =>{
     if(req.cookies) {
-        console.log(req)
+        console.log(req.cookie)
         req.token = req.cookies.myCookie;
         verifyAdminToken (req, res, next, verifyUserToken)       
     } else {

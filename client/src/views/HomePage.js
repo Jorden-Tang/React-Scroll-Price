@@ -30,6 +30,7 @@ const HomePage = (props) => {
     }
     
     useEffect(()=>{
+        auth.checkExpireToken();
         sendApiRequest()
             .then((result)=>{
                 setScrollData({scrolls: result.data.result});
@@ -50,7 +51,7 @@ const HomePage = (props) => {
     return(
         <div className = "body">
             {auth.isAuth() ?  
-            <div style= {{height: "90px",backgroundColor: "rgba(224, 219, 219, 0.5)", display: "flex", flexDirection: "row", alignItems: "center", marginRight: "3%" ,width: "100%"}}>
+            <div style= {{height: "90px",backgroundColor: "rgba(224, 219, 219, 0.5)", display: "flex", flexDirection: "row", alignItems: "center"}}>
                 <NavBar/>
                 <TextField id="filled-basic" label="Search By Equip or Stat" variant="filled"  onChange = {onInputSearchHandler} color="secondary"/>
                 <LogOutButton></LogOutButton>

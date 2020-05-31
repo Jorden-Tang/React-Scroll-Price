@@ -1,4 +1,4 @@
-import React , {useState} from 'react'
+import React , {useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl'
@@ -42,11 +42,13 @@ const UserLoginForm = (props) =>{
                         auth.adminLogin();
                         localStorage.setItem("admin_id", result.data.admin_id)
                         localStorage.setItem("user_id", result.data.user_id)
+                        localStorage.setItem("login_time", result.data.login_time)
                         history.push("/")
                     }
                     else{
                         if(result.data.isAuth){
                             localStorage.setItem("user_id", result.data.user_id)
+                            localStorage.setItem("login_time", result.data.login_time)
                             history.push("/")
                         }
                     }
@@ -59,6 +61,10 @@ const UserLoginForm = (props) =>{
         e.preventDefault();
         history.push("/registration")
     }
+
+    useEffect(()=>{
+        auth.checkExpireToken();
+    }, [])
 
 
     return(

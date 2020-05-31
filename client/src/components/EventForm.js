@@ -7,6 +7,11 @@ import axios from 'axios'
 import "../static/css/EventForm.css"
 const EventForm = (props) => {
     const total_buyer = [
+
+        {
+            value:  0,
+            label: '0',
+        },
         {
             value: 1,
             label: '1',
@@ -31,6 +36,11 @@ const EventForm = (props) => {
 
 
       const all_event_type = [
+        {
+            label: '',
+            value: '',
+        }
+        ,
         {
             label: 'Horn Tail',
             value: 'ht',
@@ -66,10 +76,11 @@ const EventForm = (props) => {
       ];
 
       const [hostIGN , setHostIGN] = useState("")
-      const [buyerAmount, setBuyerAmount] = useState(1);
-      const [eventType, setEventType] = useState("zak");
+      const [buyerAmount, setBuyerAmount] = useState(0);
+      const [eventType, setEventType] = useState("");
       const [hostTime, setHostTime] = useState(getFormattedDate());
       const [description, setDescription] = useState("")
+      const [errorArray, setErrorArray] = useState([])
 
       const handleSubmit = (event) =>{
         event.preventDefault();
@@ -82,8 +93,15 @@ const EventForm = (props) => {
                             eventType: eventType,
                         }
         axios.post("http://localhost:8000/api/event", eventData, {withCredentials: true})
-            .then(console.log)
-            .catch(console.log)
+            .then((result) =>{
+            })
+            .catch((err) => {
+                let tempArray = []
+                for(const key in err.response.data.error.errors){
+                    tempArray.push(err.response.data.error.errors[key].message)
+                }
+                setErrorArray(tempArray);
+            })
         
         
       }
@@ -129,12 +147,14 @@ const EventForm = (props) => {
         return str;
     }
 
-
     return(
         <FormControl id = "event_form_container" >
+            {errorArray.map((err,i) =>
+                <p key = {i} style = {{color: "red"}}>{err}</p>
+            )}
             <TextField value = {hostIGN} onChange = {handleHostIGNChange} style = {{width: "90%"}} id="standard-basic" label="Host IGN"  InputLabelProps={{ shrink: true}}/>
             <div style = {{display: "flex", flexDirection : "row", justifyContent: "space-around", width: "100%"}}>
-            <TextField style = {{width: "40%"}} select label="# of Buyer" onChange={handleBuyerChange} helperText="Select # of buyer">
+            <TextField style = {{width: "40%"}} select label="# of Buyer" value = {buyerAmount} onChange={handleBuyerChange} helperText="Select # of buyer">
                 {total_buyer.map((option) => (
                     <MenuItem value = {buyerAmount} label = "" key={option.value} value={option.value}>
                     {option.label}

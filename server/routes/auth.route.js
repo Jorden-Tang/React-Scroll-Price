@@ -20,16 +20,16 @@ module.exports = (app) =>{
             }
             else{
                 if(user.isAdmin){
-                    jwt.sign({user_id: user._id}, 'super_admin_key', {expiresIn: '2d'}, (err, token)=> {
+                    jwt.sign({user_id: user._id}, 'super_admin_key', {expiresIn: '7d'}, (err, token)=> {
                         res.cookie("myCookie", token, {httpOnly: true}).json({
-                            isAuth: true, isAdmin: true, user_id: user._id, admin_id: user._id, token: token
+                           login_time: Date.now(), isAuth: true, isAdmin: true, user_id: user._id, admin_id: user._id, token: token
                         })
                     })
                 }
                 else{
-                    jwt.sign({user_id:user._id}, 'user_key', {expiresIn: '2d'}, (err, token)=> {
+                    jwt.sign({user_id:user._id}, 'user_key', {expiresIn: '7d'}, (err, token)=> {
                         res.cookie("myCookie", token, {httpOnly: true}).json({
-                            isAuth: true, isAdmin: false, user_id: user._id, token: token
+                            login_time: Date.now(), isAuth: true, isAdmin: false, user_id: user._id, token: token
                         })
                     })
                 }
