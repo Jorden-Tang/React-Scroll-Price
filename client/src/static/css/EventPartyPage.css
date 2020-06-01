@@ -21,7 +21,6 @@
     width: 100%
 }
 
-
 #event_party_table_form_container{
     height: auto;
     width: auto;
@@ -33,10 +32,15 @@
 }
 
 #events_table{
+    display: flex;
+    align-content: space-between;
+    justify-content: space-evenly;
+   
+
     width: 55%;
     min-width: 400px;
-    height: 85vh;
-    min-height: 400px;
+    height: 70vh;
+    min-height: 800px;
 }
 
 #event_form{

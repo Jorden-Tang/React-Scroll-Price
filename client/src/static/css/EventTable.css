@@ -7,6 +7,10 @@
     justify-content: space-evenly; 
 }
 
+#event_table_container{
+    width: 90%
+}
+
 .boss_button{
     width: 6vw;
     height: 6vw;
