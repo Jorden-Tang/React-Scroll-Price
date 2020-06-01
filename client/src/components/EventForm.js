@@ -94,6 +94,12 @@ const EventForm = (props) => {
                         }
         axios.post("http://localhost:8000/api/event", eventData, {withCredentials: true})
             .then((result) =>{
+                setHostIGN("");
+                setBuyerAmount(0);
+                setEventType("");
+                setHostTime(getFormattedDate());
+                setDescription("");
+                setErrorArray([]);
             })
             .catch((err) => {
                 let tempArray = []
@@ -102,8 +108,7 @@ const EventForm = (props) => {
                 }
                 setErrorArray(tempArray);
             })
-        
-        
+
       }
 
       const handleBuyerChange = (event) => {

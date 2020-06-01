@@ -73,11 +73,11 @@ const EventTable = (props) =>{
             <div id = "jiao" class = "boss_button" value = 'jiao' onClick ={() => {onFilterChange('jiao')}}>JIAO</div>
         </div>
 
-        <Pagination>
+        <div id = "event_pagination">
                 {pageItemArray.map((v,i) =>[
-                        <button style = {{width: "30px", height: "30px", backgroundColor: "orange", color:"white"}} value = {v} onClick = {changePage}>{v}</button>    
+                        <button style = {{width: "30px", height: "30px", backgroundColor: "orange", color:"black"}} value = {v} onClick = {changePage}>{v}</button>    
                 ])}
-        </Pagination>
+        </div>
 
         <Table size="sm"  striped  hover variant = "dark">
             <thead>
