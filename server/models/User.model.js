@@ -19,6 +19,7 @@ const userSchema = new mongoose.Schema({
         required: [true, 'need to have a password'], 
         },
     isAdmin: {type: Boolean, default: false},
+    hosted_events: [],
 }, {timestamps: true});
 
 userSchema.pre('save', function(next){

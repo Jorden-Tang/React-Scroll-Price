@@ -6,7 +6,6 @@ const verifyUserToken = (req, res, next) => {
             res.sendStatus(403);
         } else {
             //If token is successfully verified, we can send the autorized data 
-            console.log("yes")
             next();
         }
     })

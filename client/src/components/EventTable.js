@@ -2,15 +2,13 @@ import React, {useState, useEffect} from 'react'
 import Table from 'react-bootstrap/Table'
 import Pagination from 'react-bootstrap/Pagination'
 import PageItem from 'react-bootstrap/PageItem'
-
 import axios from 'axios'
 import "../static/css/EventTable.css"
 
 const EventTable = (props) =>{
-    
     const [allEvents, setAllEvents] = useState([]);
     const [events, setEvents] = useState([]);
-    const itemPerPage = 15;
+    const itemPerPage = 10;
     const [pageItemArray, setPageItemArray] = useState([]);
     const [active, setActive] = useState(1);
     const [dataIndexRange, setDataIndexRange] = useState({start: 0, end: itemPerPage - 1});
@@ -54,7 +52,6 @@ const EventTable = (props) =>{
 
     return(
         <div id = "event_table_container">
- 
         <div id = "event_party_body_header">
             <div id = "ht" class = "boss_button"  value = {'ht'}  onClick ={() => {onFilterChange('ht')}} >HT</div>
             <div id = "zak" class = "boss_button" value = 'zak'  onClick ={() => {onFilterChange('zak')}}>ZAK</div>
@@ -73,6 +70,30 @@ const EventTable = (props) =>{
                 ])}
                 <button style = {{width: "30px", height: "30px", backgroundColor: "orange", color:"black",}} value = {pageItemArray[pageItemArray.length - 1]} onClick = {changePage}> >> </button>
         </div>
+
+        <div style = {{display: "flex", flexDirection: "row"}}>
+        <Table size="sm"  striped  hover variant = "dark">
+            <thead>
+                <tr>
+                    <th>Host</th>
+                    <th>Event Type</th>
+                    <th>Host Time</th>
+                    <th>Buyer Spots</th>
+                </tr>
+            </thead>
+            <tbody>
+                {events.slice(dataIndexRange.start, dataIndexRange.end + 1).map((v,i)=>[
+                    <tr>
+                        <td>{v.hostIGN}</td>
+                        <td>{v.eventType}</td>
+                        <td>{new Date(v.startTime).toLocaleString()}</td>
+                        <td>{v.buyer.length}</td>
+                    </tr>
+                ])}
+                <tr>
+                </tr>
+            </tbody>
+        </Table>
 
         <Table size="sm"  striped  hover variant = "dark">
             <thead>
@@ -96,6 +117,7 @@ const EventTable = (props) =>{
                 </tr>
             </tbody>
         </Table>
+        </div>
 
         
         </div>

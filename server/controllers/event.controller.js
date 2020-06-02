@@ -4,8 +4,13 @@ const User = require('../models/User.model')
 module.exports = {
     createNewEvent(req, res){
         Event.create(req.body)
-            .then((newEvent) => res.json({newEvent: newEvent}))
-            .catch((err) => res.status(400).json({message: "error creating Event", error: err}))
+            .then(async (newEvent) => {
+                let host = await User.findById({_id: newEvent.host_id});
+                host.hosted_events.push(newEvent._id);
+                host.save();
+                res.json({newEvent: newEvent})
+        })
+        .catch((err) => res.status(400).json({message: "error creating Event", error: err}))
     },
 
     updateEvent(req, res){
