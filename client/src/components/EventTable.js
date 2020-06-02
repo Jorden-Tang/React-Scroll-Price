@@ -10,10 +10,10 @@ const EventTable = (props) =>{
     
     const [allEvents, setAllEvents] = useState([]);
     const [events, setEvents] = useState([]);
-    const itemPerPage = 10;
+    const itemPerPage = 15;
     const [pageItemArray, setPageItemArray] = useState([]);
     const [active, setActive] = useState(1);
-    const [dataIndexRange, setDataIndexRange] = useState({start: 0, end: 9});
+    const [dataIndexRange, setDataIndexRange] = useState({start: 0, end: itemPerPage - 1});
     useEffect(()=>{
         axios.get("http://localhost:8000/api/event/index", {withCredentials: true})
             .then((result)=>{
@@ -21,18 +21,12 @@ const EventTable = (props) =>{
                 setAllEvents(result.data.result);
                 onTotalPageChange(result.data.result.length)
             })
-            .catch(console.log)
-            // setEventFilter(props.selectedEventType);
-           
+            .catch(console.log)           
     }, [])
 
     useEffect(()=>{
         onTotalPageChange(events.length)
     }, [events])
-
-
-
-
 
     const onTotalPageChange = (data_length) =>{
         let tempArray = [];
@@ -47,7 +41,7 @@ const EventTable = (props) =>{
     }
 
     const onFilterChange = (type) =>{
-       setDataIndexRange({start: 0, end: 9})
+       setDataIndexRange({start: 0, end: itemPerPage - 1})
        setEvents(allEvents.filter(e => e.eventType === type))
     }
 
@@ -59,7 +53,6 @@ const EventTable = (props) =>{
     }
 
     return(
-        
         <div id = "event_table_container">
  
         <div id = "event_party_body_header">
@@ -74,9 +67,11 @@ const EventTable = (props) =>{
         </div>
 
         <div id = "event_pagination">
+    <button style = {{width: "30px", height: "30px", backgroundColor: "orange", color:"black"}} value = {1} onClick = {changePage}> {'<<'} </button>
                 {pageItemArray.map((v,i) =>[
                         <button style = {{width: "30px", height: "30px", backgroundColor: "orange", color:"black"}} value = {v} onClick = {changePage}>{v}</button>    
                 ])}
+                <button style = {{width: "30px", height: "30px", backgroundColor: "orange", color:"black",}} value = {pageItemArray[pageItemArray.length - 1]} onClick = {changePage}> >> </button>
         </div>
 
         <Table size="sm"  striped  hover variant = "dark">
@@ -93,7 +88,7 @@ const EventTable = (props) =>{
                     <tr>
                         <td>{v.hostIGN}</td>
                         <td>{v.eventType}</td>
-                        <td>{v.startTime}</td>
+                        <td>{new Date(v.startTime).toLocaleString()}</td>
                         <td>{v.buyer.length}</td>
                     </tr>
                 ])}
