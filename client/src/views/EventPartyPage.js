@@ -17,7 +17,7 @@ const EventPartyPage = (props) =>{
             {auth.isAuth() ?  
             <div style= {{height: "90px",backgroundColor: "rgba(224, 219, 219, 0.5)", display: "flex", flexDirection: "row", alignItems: "center", marginRight: "3%" ,width: "100%"}}>
                 <NavBar/>
-                <div style = {{width: "220px"}}/>
+                <div style = {{width: "100px"}}/>
                 <LogOutButton></LogOutButton>
             </div>
             : <UserLoginForm></UserLoginForm>}

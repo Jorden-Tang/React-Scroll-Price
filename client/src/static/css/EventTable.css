@@ -4,12 +4,13 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-evenly; 
+    justify-content: space-around;
 }
 
 #event_table_container{
     width: 100%;
     height: auto;
+
 }
 
 .boss_button{
@@ -88,4 +89,20 @@
     background-image: url("../images/bossIcon/toad.png");
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+#allBoss{
+    background-image: url("../images/bossIcon/allBoss.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#event_table_action_bar{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

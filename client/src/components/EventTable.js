@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import Table from 'react-bootstrap/Table'
-import Pagination from 'react-bootstrap/Pagination'
-import PageItem from 'react-bootstrap/PageItem'
 import axios from 'axios'
 import "../static/css/EventTable.css"
+import TextField from '@material-ui/core/TextField'
 
 const EventTable = (props) =>{
     const [allEvents, setAllEvents] = useState([]);
@@ -12,6 +11,10 @@ const EventTable = (props) =>{
     const [pageItemArray, setPageItemArray] = useState([]);
     const [active, setActive] = useState(1);
     const [dataIndexRange, setDataIndexRange] = useState({start: 0, end: itemPerPage - 1});
+    const [searchBeginDate, setSearchBeginDate] = useState(new Date(Date.parse(getFormattedDate(0))))
+    const [searchEndDate, setSearchEndDate] = useState(new Date(Date.parse(getFormattedDate(1))))
+    const [bossType, setBossType] = useState('')
+
     useEffect(()=>{
         axios.get("http://localhost:8000/api/event/index", {withCredentials: true})
             .then((result)=>{
@@ -19,12 +22,51 @@ const EventTable = (props) =>{
                 setAllEvents(result.data.result);
                 onTotalPageChange(result.data.result.length)
             })
-            .catch(console.log)           
+            .catch(console.log)
     }, [])
 
+    //change pagination when filters are being applied (different data)
     useEffect(()=>{
         onTotalPageChange(events.length)
     }, [events])
+
+    function getFormattedDate(offsetByDay) {
+        var date = new Date(Date.now() + offsetByDay * 1000 * 60 * 60 * 24);
+        let  currentHours = date.getHours();
+        currentHours = ("0" + currentHours).slice(-2);
+        let  currentMonth = date.getMonth() + 1;
+        currentMonth = ("0" + currentMonth).slice(-2);
+        let   currentMin = date.getMinutes();
+        currentMin = ("0" + currentMin).slice(-2);
+        let  currentDate = date.getDate();
+        currentDate = ("0" + currentDate).slice(-2);
+        var str = date.getFullYear() + "-" + currentMonth + "-" + currentDate + "T" +  currentHours + ":" + currentMin
+        return str;
+    }
+
+    const onSearchBeginDateChange = (e) => {
+        e.preventDefault();
+        let date = new Date(Date.parse(e.target.value));
+        setSearchBeginDate(date);
+        onFilterChange(bossType, date, searchEndDate);
+
+    }
+
+    const onSearchEndDateChange = (e) => {
+        e.preventDefault();
+
+        let date = new Date(Date.parse(e.target.value));
+        setSearchEndDate(date);
+        onFilterChange(bossType, searchBeginDate, date);
+
+    }
+
+    const onBossTypeChange = (e) =>{
+        e.preventDefault();
+        setBossType(e.target.value);
+        onFilterChange(e.target.value, searchBeginDate, searchEndDate);
+    }
+
 
     const onTotalPageChange = (data_length) =>{
         let tempArray = [];
@@ -38,44 +80,48 @@ const EventTable = (props) =>{
         setPageItemArray(tempArray);
     }
 
-    const onFilterChange = (type) =>{
+    const onFilterChange = (type, begin, end) =>{
        setDataIndexRange({start: 0, end: itemPerPage - 1})
-       setEvents(allEvents.filter(e => e.eventType === type))
+       setEvents(allEvents.filter(v => v.eventType.includes(type) && (new Date(v.startTime) >= begin && new Date(v.startTime) <= end)));
     }
+
 
     const changePage = (e) =>{
         e.preventDefault();
         setActive(e.target.value)
         setDataIndexRange({start: ((e.target.value - 1) * itemPerPage) , end: (e.target.value * itemPerPage) - 1 })
-        // setEvents(events)
     }
 
     const formatedDate = (d) =>{
-        return d.getMonth() + '/' + d.getDate() + ' ' + d.getHours() % 12 + ':' + d.getMinutes() + (d.getHours() > 12 ? 'PM' : 'AM');
+        return (d.getMonth() + 1) % 12 + '/' + d.getDate() + ' ' + d.getHours() % 12 + ':' + d.getMinutes() + (d.getHours() > 12 ? 'PM' : 'AM');
     }
-
     return(
         <div id = "event_table_container">
         <div id = "event_party_body_header">
-            <div id = "ht" class = "boss_button"  value = {'ht'}  onClick ={() => {onFilterChange('ht')}} >HT</div>
-            <div id = "zak" class = "boss_button" value = 'zak'  onClick ={() => {onFilterChange('zak')}}>ZAK</div>
-            <div id = "cwk" class = "boss_button" value = 'cwk' onClick ={() => {onFilterChange('cwk')}}>CWK</div>
-            <div id = "scar" class = "boss_button" value = 'scar' onClick ={() => {onFilterChange('scar')}}>SCAR</div>
-            <div id = "nt" class = "boss_button"   value = 'nt'  onClick ={() => {onFilterChange('nt')}}>NT</div>
-            <div id = "toad" class = "boss_button" value = 'toad' onClick ={() => {onFilterChange('toad')}}>TOAD</div>
-            <div id = "krex" class = "boss_button" value = 'krex' onClick ={() => {onFilterChange('krex')}}>KREX</div>
-            <div id = "jiao" class = "boss_button" value = 'jiao' onClick ={() => {onFilterChange('jiao')}}>JIAO</div>
+            <button id = "allBoss" class = "boss_button"  value = ''  onClick ={onBossTypeChange} >All</button>
+            <button id = "ht" class = "boss_button"  value = 'ht'  onClick ={onBossTypeChange} >HT</button>
+            <button id = "zak" class = "boss_button" value = 'zak'  onClick ={onBossTypeChange}>ZAK</button>
+            <button id = "cwk" class = "boss_button" value = 'cwk' onClick ={onBossTypeChange}>CWK</button>
+            <button id = "scar" class = "boss_button" value = 'scar' onClick ={onBossTypeChange}>SCAR</button>
+            <button id = "nt" class = "boss_button"   value = 'nt'  onClick ={onBossTypeChange}>NT</button>
+            <button id = "toad" class = "boss_button" value = 'toad' onClick ={onBossTypeChange}>TOAD</button>
+            <button id = "krex" class = "boss_button" value = 'krex' onClick ={onBossTypeChange}>KREX</button>
+            <button id = "jiao" class = "boss_button" value = 'jiao' onClick ={onBossTypeChange}>JIAO</button>
+        </div>
+        <div id = "event_table_action_bar">
+            <div id = "event_pagination">
+                <button style = {{width: "30px", height: "30px", backgroundColor: "orange", color:"black"}} value = {1} onClick = {changePage}> {'<<'} </button>
+                    {pageItemArray.map((v,i) =>[
+                            <button style = {{width: "30px", height: "30px", backgroundColor: "orange", color:"black"}} value = {v} onClick = {changePage}>{v}</button>    
+                    ])} 
+                    <button style = {{width: "30px", height: "30px", backgroundColor: "orange", color:"black",}} value = {pageItemArray[pageItemArray.length - 1]} onClick = {changePage}> >> </button>
+
+            </div>
+            <TextField  onChange = {onSearchBeginDateChange} id="datetime-local" label="BEGIN" type="datetime-local" defaultValue={getFormattedDate(0)} InputLabelProps={{ shrink: true}}  InputProps={{style: {backgroundColor: "rgba(0,0,0, 0.3)", color:"white"}}}/>
+            <TextField  onChange = {onSearchEndDateChange} id="datetime-local" label="END" type="datetime-local" defaultValue={getFormattedDate(1)} InputLabelProps={{ shrink: true}}  InputProps={{style: {backgroundColor: "rgba(0,0,0, 0.3)", color:"white"}}}/>
         </div>
 
-        <div id = "event_pagination">
-    <button style = {{width: "30px", height: "30px", backgroundColor: "orange", color:"black"}} value = {1} onClick = {changePage}> {'<<'} </button>
-                {pageItemArray.map((v,i) =>[
-                        <button style = {{width: "30px", height: "30px", backgroundColor: "orange", color:"black"}} value = {v} onClick = {changePage}>{v}</button>    
-                ])}
-                <button style = {{width: "30px", height: "30px", backgroundColor: "orange", color:"black",}} value = {pageItemArray[pageItemArray.length - 1]} onClick = {changePage}> >> </button>
-        </div>
-
-        <div style = {{display: "flex", flexDirection: "row"}}>
+     
         <Table size="sm"  striped  hover variant = "dark">
             <thead>
                 <tr>
@@ -91,16 +137,13 @@ const EventTable = (props) =>{
                         <td>{v.hostIGN}</td>
                         <td>{v.eventType}</td>
                         <td>{formatedDate(new Date(v.startTime))}</td>
-                        <td>{v.buyers.length}</td>
+                        <td>{v.buyerCount}</td>
                     </tr>
                 ])}
                 <tr>
                 </tr>
             </tbody>
         </Table>
-        </div>
-
-        
         </div>
     )
 }

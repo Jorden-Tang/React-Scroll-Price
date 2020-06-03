@@ -1,5 +1,5 @@
 
-import { FormControl , TextField, Grid} from '@material-ui/core';
+import { FormControl , TextField} from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button'
 import React, {useState, useEffect}from 'react'
@@ -7,11 +7,6 @@ import axios from 'axios'
 import "../static/css/EventForm.css"
 const EventForm = (props) => {
     const total_buyer = [
-
-        {
-            value:  0,
-            label: '0',
-        },
         {
             value: 1,
             label: '1',
@@ -76,7 +71,7 @@ const EventForm = (props) => {
       ];
 
       const [hostIGN , setHostIGN] = useState("")
-      const [buyerAmount, setBuyerAmount] = useState(0);
+      const [buyerCount, setBuyerCount] = useState(1);
       const [eventType, setEventType] = useState("");
       const [hostTime, setHostTime] = useState(getFormattedDate());
       const [description, setDescription] = useState("")
@@ -89,13 +84,13 @@ const EventForm = (props) => {
                             startTime: hostTime,
                             hostIGN: hostIGN,
                             description: description,
-                            buyers: new Array(buyerAmount),
+                            buyerCount: buyerCount,
                             eventType: eventType,
                         }
         axios.post("http://localhost:8000/api/event", eventData, {withCredentials: true})
             .then((result) =>{
                 // setHostIGN("");
-                setBuyerAmount(0);
+                setBuyerCount(1);
                 // setEventType("");
                 setHostTime(getFormattedDate());
                 setDescription("");
@@ -113,7 +108,7 @@ const EventForm = (props) => {
 
       const handleBuyerChange = (event) => {
         event.preventDefault();
-        setBuyerAmount(event.target.value);
+        setBuyerCount(event.target.value);
       };
 
       const handleEventTypeChange = (event) => {
@@ -150,7 +145,7 @@ const EventForm = (props) => {
         currentDate = ("0" + currentDate).slice(-2);
         var str = date.getFullYear() + "-" + currentMonth + "-" + currentDate + "T" +  currentHours + ":" + currentMin
         return str;
-    }
+      }
 
     return(
         <>
@@ -160,9 +155,9 @@ const EventForm = (props) => {
             )}
             <TextField value = {hostIGN} onChange = {handleHostIGNChange} style = {{width: "90%"}} id="standard-basic" label="Host IGN"  InputLabelProps={{ shrink: true}}/>
             <div style = {{display: "flex", flexDirection : "row", justifyContent: "space-around", width: "100%"}}>
-            <TextField style = {{width: "40%"}} select label="# of Buyer" value = {buyerAmount} onChange={handleBuyerChange} helperText="Select # of buyer">
+            <TextField style = {{width: "40%"}} select label="# of Buyer" value = {buyerCount} onChange={handleBuyerChange} helperText="Select # of buyer">
                 {total_buyer.map((option) => (
-                    <MenuItem value = {buyerAmount} label = "" key={option.value} value={option.value}>
+                    <MenuItem value = {buyerCount} label = "" key={option.value} value={option.value}>
                     {option.label}
                     </MenuItem>
                 ))}
