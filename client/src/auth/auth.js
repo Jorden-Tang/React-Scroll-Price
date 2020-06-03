@@ -52,7 +52,7 @@ class Auth{
         }  
     }
     checkExpireToken(){
-        if(localStorage.getItem("login_time") < Date.now() - 2 * 24 * 60 * 60 * 1000){
+        if(localStorage.getItem("login_time") < Date.now() - 5 * 24 * 60 * 60 * 1000){
             this.logout();
         }
     }
