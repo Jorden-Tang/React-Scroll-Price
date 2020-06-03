@@ -89,14 +89,14 @@ const EventForm = (props) => {
                             startTime: hostTime,
                             hostIGN: hostIGN,
                             description: description,
-                            buyer: new Array(buyerAmount),
+                            buyers: new Array(buyerAmount),
                             eventType: eventType,
                         }
         axios.post("http://localhost:8000/api/event", eventData, {withCredentials: true})
             .then((result) =>{
-                setHostIGN("");
+                // setHostIGN("");
                 setBuyerAmount(0);
-                setEventType("");
+                // setEventType("");
                 setHostTime(getFormattedDate());
                 setDescription("");
                 setErrorArray([]);
@@ -154,7 +154,6 @@ const EventForm = (props) => {
 
     return(
         <>
-        <h2>Note: TIME IS AUTO AJUSTED BY YOUR LOCAL TIMEZONE, NO NEED TO CONVERT TO SERVER TIME (utc) </h2>
         <FormControl id = "event_form_container" >
             {errorArray.map((err,i) =>
                 <p key = {i} style = {{color: "red"}}>{err}</p>

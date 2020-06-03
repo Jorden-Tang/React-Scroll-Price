@@ -8,7 +8,7 @@ import "../static/css/EventTable.css"
 const EventTable = (props) =>{
     const [allEvents, setAllEvents] = useState([]);
     const [events, setEvents] = useState([]);
-    const itemPerPage = 10;
+    const itemPerPage = 13;
     const [pageItemArray, setPageItemArray] = useState([]);
     const [active, setActive] = useState(1);
     const [dataIndexRange, setDataIndexRange] = useState({start: 0, end: itemPerPage - 1});
@@ -50,6 +50,10 @@ const EventTable = (props) =>{
         // setEvents(events)
     }
 
+    const formatedDate = (d) =>{
+        return d.getMonth() + '/' + d.getDate() + ' ' + d.getHours() % 12 + ':' + d.getMinutes() + (d.getHours() > 12 ? 'PM' : 'AM');
+    }
+
     return(
         <div id = "event_table_container">
         <div id = "event_party_body_header">
@@ -86,31 +90,8 @@ const EventTable = (props) =>{
                     <tr>
                         <td>{v.hostIGN}</td>
                         <td>{v.eventType}</td>
-                        <td>{new Date(v.startTime).toLocaleString()}</td>
-                        <td>{v.buyer.length}</td>
-                    </tr>
-                ])}
-                <tr>
-                </tr>
-            </tbody>
-        </Table>
-
-        <Table size="sm"  striped  hover variant = "dark">
-            <thead>
-                <tr>
-                    <th>Host</th>
-                    <th>Event Type</th>
-                    <th>Host Time</th>
-                    <th>Buyer Spots</th>
-                </tr>
-            </thead>
-            <tbody>
-                {events.slice(dataIndexRange.start, dataIndexRange.end + 1).map((v,i)=>[
-                    <tr>
-                        <td>{v.hostIGN}</td>
-                        <td>{v.eventType}</td>
-                        <td>{new Date(v.startTime).toLocaleString()}</td>
-                        <td>{v.buyer.length}</td>
+                        <td>{formatedDate(new Date(v.startTime))}</td>
+                        <td>{v.buyers.length}</td>
                     </tr>
                 ])}
                 <tr>
