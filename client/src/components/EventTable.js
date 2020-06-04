@@ -131,6 +131,7 @@ const EventTable = (props) =>{
                     <th>EVENT TYPE</th>
                     <th>HOST TIME</th>
                     <th>BUYER SPOTS</th>
+                    <th>ACTIONS</th>
                 </tr>
             </thead>
             <tbody>
@@ -140,6 +141,7 @@ const EventTable = (props) =>{
                         <td>{v.eventType.toUpperCase()}</td>
                         <td>{formatedDate(new Date(v.startTime))}</td>
                         <td>{v.buyerCount}</td>
+                        <td><button>Detail</button> <button>Join</button></td>
                     </tr>
                 ])}
                 <tr>

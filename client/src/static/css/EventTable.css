@@ -12,7 +12,7 @@
 }
 
 #event_table_container{
-    width: 80%;
+    width: 70%;
     height: auto;
 }
 
@@ -113,8 +113,10 @@
 
 
 #event_table_container Table{
+    font-family: 'Balsamiq Sans', cursive, Pacifico;
     min-width: 400px;
     height: 375px;
+    text-align: center;
 }
 
 #event_table_container Table td{

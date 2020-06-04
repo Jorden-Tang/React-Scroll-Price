@@ -1,8 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
+
 #hosted_events_table_container{
-    width: 80%;
+    width: 70%;
     height: auto;
+    font-family: 'Balsamiq Sans', cursive, Pacifico;
 }
 
 #hosted_events_table_container Table{
+    
     min-width: 400px !important;
+    text-align: center;
 }
+
+#hosted_events_table_container Table td{
+    height: 20px;
+}
+
+#hosted_events_table_container h1{
+    
+}
+
+

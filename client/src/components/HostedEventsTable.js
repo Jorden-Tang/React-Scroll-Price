@@ -13,32 +13,14 @@ const HostedEventsTable = (props) =>{
                     <th>EVENT TYPE</th>
                     <th>HOST TIME</th>
                     <th>BUYER SPOTS</th>
-                    <th>Detail</th>
+                    <th>ACTION</th>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Zak</td>
                         <td>05/55 11:10AM</td>
                         <td>3</td>
-                        <td><button>Detail</button></td>
-                    </tr>
-                    <tr>
-                        <td>Zak</td>
-                        <td>05/55 11:10AM</td>
-                        <td>3</td>
-                        <td><button>Detail</button></td>
-                    </tr>
-                    <tr>
-                        <td>Zak</td>
-                        <td>05/55 11:10AM</td>
-                        <td>3</td>
-                        <td><button>Detail</button></td>
-                    </tr>
-                    <tr>
-                        <td>Zak</td>
-                        <td>05/55 11:10AM</td>
-                        <td>3</td>
-                        <td><button>Detail</button></td>
+                        <td><button>Update</button></td>
                     </tr>
                 </tbody>
             </Table>
