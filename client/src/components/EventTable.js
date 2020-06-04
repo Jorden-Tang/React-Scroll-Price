@@ -3,11 +3,13 @@ import Table from 'react-bootstrap/Table'
 import axios from 'axios'
 import "../static/css/EventTable.css"
 import TextField from '@material-ui/core/TextField'
+import HostedEventsTable from './HostedEventsTable'
+import JoinedEventsTable from './JoinedEventsTable'
 
 const EventTable = (props) =>{
     const [allEvents, setAllEvents] = useState([]);
     const [events, setEvents] = useState([]);
-    const itemPerPage = 13;
+    const itemPerPage = 10;
     const [pageItemArray, setPageItemArray] = useState([]);
     const [active, setActive] = useState(1);
     const [dataIndexRange, setDataIndexRange] = useState({start: 0, end: itemPerPage - 1});
@@ -117,25 +119,25 @@ const EventTable = (props) =>{
                     <button style = {{width: "30px", height: "30px", backgroundColor: "orange", color:"black",}} value = {pageItemArray[pageItemArray.length - 1]} onClick = {changePage}> >> </button>
 
             </div>
+            <div style={{width: "100%", display: "flex",flexWrap: "wrap", flexDirection: "row", justifyContent: "space-evenly"}}>
             <TextField  onChange = {onSearchBeginDateChange} id="datetime-local" label="BEGIN" type="datetime-local" defaultValue={getFormattedDate(0)} InputLabelProps={{ shrink: true}}  InputProps={{style: {backgroundColor: "rgba(0,0,0, 0.3)", color:"white"}}}/>
             <TextField  onChange = {onSearchEndDateChange} id="datetime-local" label="END" type="datetime-local" defaultValue={getFormattedDate(1)} InputLabelProps={{ shrink: true}}  InputProps={{style: {backgroundColor: "rgba(0,0,0, 0.3)", color:"white"}}}/>
+            </div>
         </div>
-
-     
-        <Table size="sm"  striped  hover variant = "dark">
+        <Table style = {{fontFamily: '"Balsamiq Sans", cursive, Pacifico'}} size="sm"  striped  hover variant = "dark">
             <thead>
                 <tr>
-                    <th>Host</th>
-                    <th>Event Type</th>
-                    <th>Host Time</th>
-                    <th>Buyer Spots</th>
+                    <th>HOST</th>
+                    <th>EVENT TYPE</th>
+                    <th>HOST TIME</th>
+                    <th>BUYER SPOTS</th>
                 </tr>
             </thead>
             <tbody>
                 {events.slice(dataIndexRange.start, dataIndexRange.end + 1).map((v,i)=>[
                     <tr>
                         <td>{v.hostIGN}</td>
-                        <td>{v.eventType}</td>
+                        <td>{v.eventType.toUpperCase()}</td>
                         <td>{formatedDate(new Date(v.startTime))}</td>
                         <td>{v.buyerCount}</td>
                     </tr>

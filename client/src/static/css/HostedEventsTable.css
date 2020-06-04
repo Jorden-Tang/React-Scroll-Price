@@ -1,0 +1,8 @@
+#hosted_events_table_container{
+    width: 80%;
+    height: auto;
+}
+
+#hosted_events_table_container Table{
+    min-width: 400px !important;
+}

@@ -150,6 +150,7 @@ const EventForm = (props) => {
     return(
         <>
         <FormControl id = "event_form_container" >
+            <a id = "event_form_exit" href = "#">✖</a>
             {errorArray.map((err,i) =>
                 <p key = {i} style = {{color: "red"}}>{err}</p>
             )}
@@ -174,7 +175,7 @@ const EventForm = (props) => {
             <TextField onChange = {handleTimeChange} style = {{width: "90%"}} id="datetime-local" label="Next appointment" type="datetime-local" defaultValue={getFormattedDate()} InputLabelProps={{ shrink: true}}/>
             <TextField onChange = {handleDescriptionChange} multiline rows ="4" style = {{width: "90%", height: "100px"}} id="outlined-basic" label="Detail" variant="outlined" InputLabelProps={{ shrink: true}} />
 
-           <Button onClick = {handleSubmit} style = {{width: "90%", height: "50px"}} variant="contained" color="primary"> Create Event </Button>
+           <Button onClick = {handleSubmit} style = {{width: "90%", height: "50px"}} variant="contained" color="primary"> Submit </Button>
         </FormControl>
         </>
     )

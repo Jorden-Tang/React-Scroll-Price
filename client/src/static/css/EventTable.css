@@ -1,16 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
+
+
 #event_party_body_header{
-    width: 100%;
+    width: auto;
     height: auto;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
+ 
 }
 
 #event_table_container{
-    width: 100%;
+    width: 80%;
     height: auto;
-
 }
 
 .boss_button{
@@ -98,6 +101,7 @@
 }
 
 #event_table_action_bar{
+    font-family: 'Balsamiq Sans', cursive, Pacifico;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -105,4 +109,14 @@
     justify-content: space-around;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+
+#event_table_container Table{
+    min-width: 400px;
+    height: 375px;
+}
+
+#event_table_container Table td{
+    height: 10px !important;
 }
