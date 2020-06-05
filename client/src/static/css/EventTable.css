@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
 
-
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
 #event_party_body_header{
     width: auto;
     height: auto;
@@ -120,5 +124,28 @@
 }
 
 #event_table_container Table td{
-    height: 10px !important;
+    height: 20px !important;
+}
+
+.detail_button{
+    background-color: orange;
+    margin: 3px;
+    padding: 3px;
+    border-radius: 4px;
+}
+
+.detail_button:hover{
+    color: white;
+    background-color: darkred;
+}
+
+.join_button{
+    background-color: green;
+    margin: 3px;
+    padding: 3px;
+    border-radius: 4px;
+}
+.join_button:hover{
+    color: white;
+    background-color: darkred;
 }

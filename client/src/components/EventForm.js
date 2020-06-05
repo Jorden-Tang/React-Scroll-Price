@@ -73,9 +73,10 @@ const EventForm = (props) => {
       const [hostIGN , setHostIGN] = useState("")
       const [buyerCount, setBuyerCount] = useState(1);
       const [eventType, setEventType] = useState("");
-      const [hostTime, setHostTime] = useState(getFormattedDate());
+      const [hostTime, setHostTime] = useState(Date.now());
       const [description, setDescription] = useState("")
       const [errorArray, setErrorArray] = useState([])
+      const [buyerArray, setBuyerArray] = useState([])
 
       const handleSubmit = (event) =>{
         event.preventDefault();
@@ -92,7 +93,7 @@ const EventForm = (props) => {
                 // setHostIGN("");
                 setBuyerCount(1);
                 // setEventType("");
-                setHostTime(getFormattedDate());
+                setHostTime(Date.now());
                 setDescription("");
                 setErrorArray([]);
             })
@@ -109,6 +110,11 @@ const EventForm = (props) => {
       const handleBuyerChange = (event) => {
         event.preventDefault();
         setBuyerCount(event.target.value);
+        let temp = [];
+        for(let i = 0; i < event.target.value; i++){
+            temp.push({buyerType:'', buyerIGN:''})
+        }
+        setBuyerArray(temp);
       };
 
       const handleEventTypeChange = (event) => {
@@ -117,7 +123,7 @@ const EventForm = (props) => {
 
       const handleTimeChange = (event) =>{
         event.preventDefault();
-        let date = new Date(Date.parse(event.target.value));
+        let date = Date.parse(event.target.value);
         setHostTime(date);
         // console.log(hostTime)
       }
@@ -133,8 +139,8 @@ const EventForm = (props) => {
         setDescription(event.target.value);
       }
 
-      function getFormattedDate() {
-        var date = new Date(Date.now());
+      function getFormattedDate(time_in_mili) {
+        var date = new Date(time_in_mili);
         let  currentHours = date.getHours();
         currentHours = ("0" + currentHours).slice(-2);
         let  currentMonth = date.getMonth() + 1;
@@ -150,31 +156,33 @@ const EventForm = (props) => {
     return(
         <>
         <FormControl id = "event_form_container" >
-            <a id = "event_form_exit" href = "#">✖</a>
+            <a id = "event_form_exit" href = "#">❎</a>
             {errorArray.map((err,i) =>
                 <p key = {i} style = {{color: "red"}}>{err}</p>
             )}
             <TextField value = {hostIGN} onChange = {handleHostIGNChange} style = {{width: "90%"}} id="standard-basic" label="Host IGN"  InputLabelProps={{ shrink: true}}/>
-            <div style = {{display: "flex", flexDirection : "row", justifyContent: "space-around", width: "100%"}}>
-            <TextField style = {{width: "40%"}} select label="# of Buyer" value = {buyerCount} onChange={handleBuyerChange} helperText="Select # of buyer">
+            <TextField style = {{width: "90%"}} select label="# of Buyer" value = {buyerCount} onChange={handleBuyerChange} helperText="Select # of buyer">
                 {total_buyer.map((option) => (
                     <MenuItem value = {buyerCount} label = "" key={option.value} value={option.value}>
                     {option.label}
                     </MenuItem>
                 ))}
             </TextField>
+            <div style = {{display:"flex", flexDirection: "row", width :"100%", wrap: "wrap"}}></div>
+            {buyerArray.map((p,i)=>(
+                <TextField style = {{width: "200px", height: "35px", marginLeft: "10px"}} label="Buyer Type: Ex: helmet">{p.buyerType}</TextField>
+            ))}   
+        
 
-            <TextField value = {eventType} style = {{width: "40%"}} select label="Event Type" onChange={handleEventTypeChange} helperText="Select Event Type">
+            <TextField value = {eventType} style = {{width: "90%"}} select label="Event Type" onChange={handleEventTypeChange} helperText="Select Event Type">
                 {all_event_type.map((option) => (
                     <MenuItem label = "" key={option.value} value={option.value}>
                     {option.label}
                     </MenuItem>
                 ))}
             </TextField>
-            </div>
-            <TextField onChange = {handleTimeChange} style = {{width: "90%"}} id="datetime-local" label="Next appointment" type="datetime-local" defaultValue={getFormattedDate()} InputLabelProps={{ shrink: true}}/>
+            <TextField onChange = {handleTimeChange} style = {{width: "90%"}} id="datetime-local" label="Next appointment" type="datetime-local" value = {getFormattedDate(hostTime)} defaultValue={getFormattedDate(Date.now())} InputLabelProps={{ shrink: true}}/>
             <TextField onChange = {handleDescriptionChange} multiline rows ="4" style = {{width: "90%", height: "100px"}} id="outlined-basic" label="Detail" variant="outlined" InputLabelProps={{ shrink: true}} />
-
            <Button onClick = {handleSubmit} style = {{width: "90%", height: "50px"}} variant="contained" color="primary"> Submit </Button>
         </FormControl>
         </>

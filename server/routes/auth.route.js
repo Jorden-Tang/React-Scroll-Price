@@ -19,17 +19,17 @@ module.exports = (app) =>{
                     errors.push("Incorrect Credentials");
             }
             else{
-                if(user.isAdmin){
+                if(user.isAdmin){Age
                     jwt.sign({user_id: user._id}, 'super_admin_key', {expiresIn: '7d'}, (err, token)=> {
-                        res.cookie("myCookie", token, {httpOnly: true}, {expiresIn: '7d'}).json({
-                           login_time: Date.now(), isAuth: true, isAdmin: true, user_id: user._id, admin_id: user._id, token: token
+                        res.cookie("myCookie", token, {maxAge: 604800000, httpOnly: true}).json({
+                           login_time: Date.now(), isAuth: true, isAdmin: true, user_id: user._id, admin_id: user._id
                         })
                     })
                 }
                 else{
                     jwt.sign({user_id:user._id}, 'user_key', {expiresIn: '7d'}, (err, token)=> {
-                        res.cookie("myCookie", token, {httpOnly: true}, {expiresIn: '7d'}).json({
-                            login_time: Date.now(), isAuth: true, isAdmin: false, user_id: user._id, token: token
+                        res.cookie("myCookie", token, {maxAge: 604800000, httpOnly: true}).json({
+                            login_time: Date.now(), isAuth: true, isAdmin: false, user_id: user._id
                         })
                     })
                 }

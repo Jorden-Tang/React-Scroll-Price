@@ -141,7 +141,7 @@ const EventTable = (props) =>{
                         <td>{v.eventType.toUpperCase()}</td>
                         <td>{formatedDate(new Date(v.startTime))}</td>
                         <td>{v.buyerCount}</td>
-                        <td><button>Detail</button> <button>Join</button></td>
+                        <td><button class = "detail_button">Detail</button> <button class = "join_button">Join</button></td>
                     </tr>
                 ])}
                 <tr>
