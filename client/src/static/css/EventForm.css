@@ -2,7 +2,7 @@
     padding-top: 20px;
     width: 350px;
     height: 700px;
-    background-color: rgba(255,255,255);
+    background-color: rgba(255,255,255, 0.9);
     border-radius: 25px;
     display: flex;
     justify-content: space-evenly;
@@ -10,7 +10,7 @@
     z-index: 10;
     position: fixed;
     right: 30px;
-    top: 0px;
+    top: 150px;
     visibility: hidden;
     opacity: 0;
 }

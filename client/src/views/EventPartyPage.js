@@ -17,13 +17,14 @@ const EventPartyPage = (props) =>{
     return(
         <div id="event_party_container" >
             {auth.isAuth() ?  
-            <div style= {{position: "fixed", height: "90px",backgroundColor: "rgba(224, 219, 219, 0.5)", display: "flex", flexDirection: "row", alignItems: "center" ,width: "100%"}}>
+            <div style= {{position: "sticky", top: "0", height: "90px",backgroundColor: "rgba(224, 219, 219, 0.5)", display: "flex", flexDirection: "row", alignItems: "center" ,width: "100%"}}>
                 <NavBar/>
                 <a id = "create_event_button" href = "#event_form_container">Create Event</a> 
                 <LogOutButton></LogOutButton>
             </div>
             : <UserLoginForm></UserLoginForm>}
        
+             <EventForm> </EventForm>
             <div id = "event_party_body">
                 <div id = "event_party_table_form_container">
                     <div id = "events_table">
@@ -31,13 +32,9 @@ const EventPartyPage = (props) =>{
                         <HostedEventsTable></HostedEventsTable>
                         <JoinedEventsTable></JoinedEventsTable>
                     </div>
-                    <EventForm> </EventForm>
                 </div>
             </div>
         </div>
-
-
-
     )
 }
 export default EventPartyPage;

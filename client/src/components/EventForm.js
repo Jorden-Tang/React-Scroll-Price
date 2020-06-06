@@ -69,14 +69,13 @@ const EventForm = (props) => {
             value: 'toad',
         },
       ];
-
       const [hostIGN , setHostIGN] = useState("")
       const [buyerCount, setBuyerCount] = useState(1);
       const [eventType, setEventType] = useState("");
       const [hostTime, setHostTime] = useState(Date.now());
       const [description, setDescription] = useState("")
       const [errorArray, setErrorArray] = useState([])
-      const [buyerArray, setBuyerArray] = useState([])
+      const [buyerArray, setBuyerArray] = useState([{buyerType: "", buyerIGN: "", buyerID: "" }])
 
       const handleSubmit = (event) =>{
         event.preventDefault();
@@ -87,6 +86,7 @@ const EventForm = (props) => {
                             description: description,
                             buyerCount: buyerCount,
                             eventType: eventType,
+                            buyers: buyerArray,
                         }
         axios.post("http://localhost:8000/api/event", eventData, {withCredentials: true})
             .then((result) =>{
@@ -112,7 +112,7 @@ const EventForm = (props) => {
         setBuyerCount(event.target.value);
         let temp = [];
         for(let i = 0; i < event.target.value; i++){
-            temp.push({buyerType:'', buyerIGN:''})
+            temp.push({buyerType:'', buyerIGN:'', buyerID: ''})
         }
         setBuyerArray(temp);
       };
@@ -153,10 +153,21 @@ const EventForm = (props) => {
         return str;
       }
 
+      const handleBuyerTypeChange =(e, i)=>{
+        e.preventDefault();
+        let a = buyerArray.slice();
+        a[i][(e.target.name)] = e.target.value;
+        setBuyerArray(a);
+        console.log(a)
+       
+
+        // setBuyerArray(tempArray);
+      }
+
     return(
         <>
         <FormControl id = "event_form_container" >
-            <a id = "event_form_exit" href = "#">❎</a>
+            <a id = "event_form_exit" href = "#!">❎</a>
             {errorArray.map((err,i) =>
                 <p key = {i} style = {{color: "red"}}>{err}</p>
             )}
@@ -169,12 +180,12 @@ const EventForm = (props) => {
                 ))}
             </TextField>
             <div style = {{display:"flex", flexDirection: "row", width :"100%", wrap: "wrap"}}></div>
-            {buyerArray.map((p,i)=>(
-                <TextField style = {{width: "200px", height: "35px", marginLeft: "10px"}} label="Buyer Type: Ex: helmet">{p.buyerType}</TextField>
+            {buyerArray.map((p, i)=>(
+                <TextField name = "buyerType" onChange = {(event) => {handleBuyerTypeChange(event, i)}}  style = {{width: "200px", height: "35px", marginLeft: "10px"}} label="Buyer Type: Ex: helmet" value = {p.buyerType} >{p.buyerType}</TextField>
             ))}   
         
 
-            <TextField value = {eventType} style = {{width: "90%"}} select label="Event Type" onChange={handleEventTypeChange} helperText="Select Event Type">
+            <TextField  style = {{width: "90%"}} select label="Event Type" onChange={handleEventTypeChange} helperText="Select Event Type">
                 {all_event_type.map((option) => (
                     <MenuItem label = "" key={option.value} value={option.value}>
                     {option.label}

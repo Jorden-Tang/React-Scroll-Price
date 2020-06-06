@@ -12,7 +12,6 @@ module.exports = {
         })
         .catch((err) => res.status(400).json({message: "error creating Event", error: err}))
     },
-
     updateEvent(req, res){
         Event.findOneAndUpdate({_id : req.params.id}, req.body)
             .then((updatedEvent)=> res.json({result: updatedEvent}))
@@ -31,9 +30,37 @@ module.exports = {
             .catch((err)=> res.status(400).json({message: "error finding all events", error: err}))
     },
     async joinEvent(req, res){
-        let buyer = await User.findById(req.body.user_id);
-        let current_event = await Event.findById(req.id);
-        current_event.buyer.push(buyer);
-        req.json({message: "Successfully Joined Event"});
+        let current_event = await Event.findById(req.params.event_id);
+        let current_user = await User.findById(req.params.user_id);
+        let type = req.body.buyerType;
+        let IGN = req.body.buyerIGN;
+        console.log(type)
+        console.log(IGN)
+
+        console.log(current_event);
+        console.log(current_user);
+
+        //finding empty spot and add
+        for(let i = 0; i < current_event.buyers.length; i++){
+            if(current_event.buyers[i]['buyerType'] === type && current_event.buyers[i]['buyerIGN'] === ''){
+                (current_event.buyers)[i].buyerIGN = IGN;
+                (current_event.buyers)[i].buyerType = type;
+                (current_event.buyers)[i].buyerID = current_user._id;
+                break;
+            }
+        }
+
+        
+        current_event.buyerCount -= 1;
+        current_event.save();
+        current_user.joined_events.push(current_event._id);
+        current_user.save();
+        console.log("user " + req.params.user_id + " " + current_user.name + "joined event "+ req.params.event_id);
+        res.json({message: "joined event successfully"})
+    },
+    findEventById(req, res){
+        Event.findById(req.params.id)
+            .then((result) => res.json({result: result}))
+            .catch((err)=> res.status(400).json({message: "error find event by id", error: err}))
     }
 }

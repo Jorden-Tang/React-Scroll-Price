@@ -14,3 +14,22 @@
     min-width: 400px !important;
     text-align: center;
 }
+
+#joined_events_table_container h1{
+    font-family: 'Balsamiq Sans', cursive, Pacifico;
+    color: orange;
+    width: 250px;
+    border-radius: 10px;
+    background-color: rgba(0,0,0, 0.3);
+}
+
+.join_button{
+    background-color: rgb(12, 226, 12);
+    margin: 3px;
+    padding: 3px;
+    border-radius: 4px;
+}
+.join_button:hover{
+    color: white;
+    background-color: darkred;
+}

@@ -14,8 +14,9 @@ import NotFoundPage from './views/NotFoundPage'
 import AdminLoginPage from './views/AdminLoginPage'
 import UserRegPage from './views/UserRegistrationPage'
 import EventPartyPage from './views/EventPartyPage';
+import EventDetailPage from './views/EventDetailPage'
 
-function App() {
+function App() {  
   return (
     <div className="App">
      <BrowserRouter>
@@ -24,6 +25,7 @@ function App() {
         <Route exact path="/registration" component = {UserRegPage}></Route>
         <AdminProtectedRoute exact path="/admin" component={AdminPage}/>
         <UserProtectedRoute exact path="/event" component = {EventPartyPage}/>
+        <UserProtectedRoute exact path="/event/:event_id" component = {EventDetailPage}/>
      </BrowserRouter>
     </div>
   );

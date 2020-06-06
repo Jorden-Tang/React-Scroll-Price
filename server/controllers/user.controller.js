@@ -1,4 +1,5 @@
 const User = require('../models/User.model');
+const Event = require('../models/event.model')
 
 module.exports = {
     createNewUser(req,res){
@@ -23,5 +24,15 @@ module.exports = {
         User.find()
             .then((all)=> res.json({result: all}))
             .catch((err)=> res.status(400).json({message: "error getting all user", error: err}))
+    },
+
+    async findHostedEvents(req, res){
+        let current_user = await User.findById(req.params.id);
+        let eventDataArray = [];
+        for (let i = 0; i < current_user.hosted_events.length; i++){
+            let event = await Event.findById((current_user.hosted_events)[i]);
+            eventDataArray.push(event);
+        }
+        res.json({result: eventDataArray});
     }
 }

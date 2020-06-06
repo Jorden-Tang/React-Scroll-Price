@@ -19,7 +19,7 @@ module.exports = (app) =>{
                     errors.push("Incorrect Credentials");
             }
             else{
-                if(user.isAdmin){Age
+                if(user.isAdmin){
                     jwt.sign({user_id: user._id}, 'super_admin_key', {expiresIn: '7d'}, (err, token)=> {
                         res.cookie("myCookie", token, {maxAge: 604800000, httpOnly: true}).json({
                            login_time: Date.now(), isAuth: true, isAdmin: true, user_id: user._id, admin_id: user._id

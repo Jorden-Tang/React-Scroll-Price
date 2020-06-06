@@ -50,7 +50,7 @@ const HomePage = (props) => {
     
     return(
         <div className = "body">
-            <div style = {{width: "100%", height: "auto", position: "fixed", top: "0", zIndex:"11"}}>
+            <div style = {{width: "100%", height: "auto", position: "sticky", top: "0", zIndex:"11"}}>
             {auth.isAuth() ?  
             <div style= {{height: "90px",backgroundColor: "rgba(224, 219, 219, 0.5)", display: "flex", flexDirection: "row", alignItems: "center"}}>
                 <NavBar/>

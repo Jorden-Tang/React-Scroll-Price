@@ -4,7 +4,12 @@ import Table from 'react-bootstrap/Table'
 
 const JoinedEventsTable = (props) =>{
 
-    
+    const [joinedEvents, setJoinedEvents] = useState([]);
+
+    //fetch hosted events data
+    useEffect(() => {
+        let host_id = localStorage.getItem('user_id')
+    }, []);
     return (
         <div id = "joined_events_table_container">
             <h1>Joined Runs</h1>
@@ -12,7 +17,7 @@ const JoinedEventsTable = (props) =>{
                 <thead>
                     <th>EVENT TYPE</th>
                     <th>HOST TIME</th>
-                    <th>BUYER SPOTS</th>
+                    <th>SPOTS</th>
                     <th>ACTION</th>
                 </thead>
                 <tbody>
@@ -20,7 +25,7 @@ const JoinedEventsTable = (props) =>{
                         <td>Zak</td>
                         <td>05/55 11:10AM</td>
                         <td>3</td>
-                        <td><button>Leave</button> <button>Detail</button></td>
+                        <td><button>Detail</button> <button>Leave</button></td>
                     </tr>
                 </tbody>
             </Table>

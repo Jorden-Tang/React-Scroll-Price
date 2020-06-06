@@ -7,4 +7,5 @@ module.exports = (app) =>{
     app.post("/api/user", userController.createNewUser);
     app.delete("/api/user/:id/delete", checkAdminToken, userController.deleteUser);
     app.put("/api/user/:id/edit", checkToken, userController.updateUser);
+    app.get("/api/user/:id/hosted_events", checkToken, userController.findHostedEvents);
 }

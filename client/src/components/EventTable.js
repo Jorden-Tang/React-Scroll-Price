@@ -3,10 +3,13 @@ import Table from 'react-bootstrap/Table'
 import axios from 'axios'
 import "../static/css/EventTable.css"
 import TextField from '@material-ui/core/TextField'
-import HostedEventsTable from './HostedEventsTable'
-import JoinedEventsTable from './JoinedEventsTable'
+import EventDetailPage from '../views/EventDetailPage'
+import {Link} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
+
 
 const EventTable = (props) =>{
+    const history = useHistory();
     const [allEvents, setAllEvents] = useState([]);
     const [events, setEvents] = useState([]);
     const itemPerPage = 10;
@@ -20,8 +23,8 @@ const EventTable = (props) =>{
     useEffect(()=>{
         axios.get("http://localhost:8000/api/event/index", {withCredentials: true})
             .then((result)=>{
-                setEvents(result.data.result);
-                setAllEvents(result.data.result);
+                setEvents(result.data.result.filter(v => v.buyerCount > 0));
+                setAllEvents(result.data.result.filter(v => v.buyerCount > 0));
                 onTotalPageChange(result.data.result.length)
             })
             .catch(console.log)
@@ -97,6 +100,11 @@ const EventTable = (props) =>{
     const formatedDate = (d) =>{
         return (d.getMonth() + 1) % 12 + '/' + d.getDate() + ' ' + d.getHours() % 12 + ':' + d.getMinutes() + (d.getHours() > 12 ? 'PM' : 'AM');
     }
+
+    const onJoinParty = (e, event_id) =>{
+        // e.preventDefault();
+       console.log(event_id);
+    }
     return(
         <div id = "event_table_container">
         <div id = "event_party_body_header">
@@ -130,19 +138,26 @@ const EventTable = (props) =>{
                     <th>HOST</th>
                     <th>EVENT TYPE</th>
                     <th>HOST TIME</th>
-                    <th>BUYER SPOTS</th>
+                    <th>SPOTS</th>
                     <th>ACTIONS</th>
                 </tr>
             </thead>
             <tbody>
                 {events.slice(dataIndexRange.start, dataIndexRange.end + 1).map((v,i)=>[
-                    <tr>
+                    <>
+                    <tr key = {i}>
                         <td>{v.hostIGN}</td>
                         <td>{v.eventType.toUpperCase()}</td>
                         <td>{formatedDate(new Date(v.startTime))}</td>
                         <td>{v.buyerCount}</td>
-                        <td><button class = "detail_button">Detail</button> <button class = "join_button">Join</button></td>
+                        <td style = {{display: "flex", justifyContent: "center"}}>
+                            <div class = "detail_button">Detail
+                                <span class = "event_description_tip">{v.description}</span>
+                            </div>
+                            <button class = "join_button" onClick = {(e) => {history.push('/event/' + v._id)}}>Join</button>
+                        </td>
                     </tr>
+                    </>
                 ])}
                 <tr>
                 </tr>

@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema({
         },
     isAdmin: {type: Boolean, default: false},
     hosted_events: [],
+    joined_events: [],
 }, {timestamps: true});
 
 userSchema.pre('save', function(next){
