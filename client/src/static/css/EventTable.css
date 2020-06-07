@@ -131,7 +131,7 @@
     margin: 3px;
     padding: 3px;
     border-radius: 4px;
-    width: 60;
+    display: inline;
     color: black;
 }
 
@@ -167,6 +167,7 @@
     margin: 3px;
     padding: 3px;
     border-radius: 4px;
+    display: inline;
 }
 .join_button:hover{
     color: white;

@@ -34,12 +34,7 @@ module.exports = {
         let current_user = await User.findById(req.params.user_id);
         let type = req.body.buyerType;
         let IGN = req.body.buyerIGN;
-        console.log(type)
-        console.log(IGN)
-
-        console.log(current_event);
-        console.log(current_user);
-
+  
         //finding empty spot and add
         for(let i = 0; i < current_event.buyers.length; i++){
             if(current_event.buyers[i]['buyerType'] === type && current_event.buyers[i]['buyerIGN'] === ''){
@@ -49,7 +44,6 @@ module.exports = {
                 break;
             }
         }
-
         
         current_event.buyerCount -= 1;
         current_event.save();

@@ -23,8 +23,8 @@ const EventTable = (props) =>{
     useEffect(()=>{
         axios.get("http://localhost:8000/api/event/index", {withCredentials: true})
             .then((result)=>{
-                setEvents(result.data.result.filter(v => v.buyerCount > 0));
-                setAllEvents(result.data.result.filter(v => v.buyerCount > 0));
+                setEvents(result.data.result.filter(v => v.buyerCount > 0 && v.host_id !== localStorage.getItem('user_id')));
+                setAllEvents(result.data.result.filter(v => v.buyerCount > 0 && v.host_id !== localStorage.getItem('user_id')));
                 onTotalPageChange(result.data.result.length)
             })
             .catch(console.log)
@@ -34,6 +34,13 @@ const EventTable = (props) =>{
     useEffect(()=>{
         onTotalPageChange(events.length)
     }, [events])
+
+
+    function buyerExists(arr, ID) {
+        return arr.some(function(el) {
+          return el.buyerID === ID;
+        }); 
+    }
 
     function getFormattedDate(offsetByDay) {
         var date = new Date(Date.now() + offsetByDay * 1000 * 60 * 60 * 24);
@@ -71,7 +78,6 @@ const EventTable = (props) =>{
         setBossType(e.target.value);
         onFilterChange(e.target.value, searchBeginDate, searchEndDate);
     }
-
 
     const onTotalPageChange = (data_length) =>{
         let tempArray = [];

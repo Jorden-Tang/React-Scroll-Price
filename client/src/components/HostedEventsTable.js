@@ -13,6 +13,7 @@ const HostedEventsTable = (props) =>{
     useEffect(() => {
         axios.get("http://localhost:8000/api/user/" + localStorage.getItem('user_id') + "/hosted_events", {withCredentials: true})
             .then((result)=>{setHostedEvents(result.data.result)})
+            .catch(console.log)
     }, []);
 
     return (
@@ -31,14 +32,21 @@ const HostedEventsTable = (props) =>{
                             <td>{v.eventType}</td>
                             <td>{new Date( Date.parse(v.startTime)).toLocaleString()}</td>
                             <td>{v.buyerCount}</td>
-                            <td><button>Detail</button><button>Update</button></td>
+                            <td>
+                            <div class = "detail_button" style = {{display: "inline"}}>Detail
+                                    <span class = "event_description_tip">{v.buyers.map((p, j)=> [
+                                        <div>
+                                            <span>{p.buyerType + ": "}</span>
+                                            <span>{p.buyerIGN}</span>
+                                        </div>
+                                    ])}</span>
+                            </div>
+                            <button class = "join_button">Cancel</button><button>Update</button></td>
                         </tr>
                     ])}
                 </tbody>
             </Table>
         </div>
     )
-
-
 }
 export default HostedEventsTable
