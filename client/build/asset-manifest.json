@@ -1,29 +1,31 @@
 {
   "files": {
-    "main.css": "/static/css/main.2c6aacc3.chunk.css",
-    "main.js": "/static/js/main.a92b15f1.chunk.js",
-    "main.js.map": "/static/js/main.a92b15f1.chunk.js.map",
+    "main.css": "/static/css/main.ce3d48fd.chunk.css",
+    "main.js": "/static/js/main.2022f7f2.chunk.js",
+    "main.js.map": "/static/js/main.2022f7f2.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.cea588d5.js",
     "runtime-main.js.map": "/static/js/runtime-main.cea588d5.js.map",
-    "static/css/2.47e06e2e.chunk.css": "/static/css/2.47e06e2e.chunk.css",
-    "static/js/2.54248233.chunk.js": "/static/js/2.54248233.chunk.js",
-    "static/js/2.54248233.chunk.js.map": "/static/js/2.54248233.chunk.js.map",
+    "static/css/2.ace36aee.chunk.css": "/static/css/2.ace36aee.chunk.css",
+    "static/js/2.a9dc6074.chunk.js": "/static/js/2.a9dc6074.chunk.js",
+    "static/js/2.a9dc6074.chunk.js.map": "/static/js/2.a9dc6074.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.8ba4074d8c8cd20deb270d047b0ed20a.js": "/precache-manifest.8ba4074d8c8cd20deb270d047b0ed20a.js",
+    "precache-manifest.4d813936329c321461ce035e4a252590.js": "/precache-manifest.4d813936329c321461ce035e4a252590.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/2.47e06e2e.chunk.css.map": "/static/css/2.47e06e2e.chunk.css.map",
-    "static/css/main.2c6aacc3.chunk.css.map": "/static/css/main.2c6aacc3.chunk.css.map",
-    "static/js/2.54248233.chunk.js.LICENSE.txt": "/static/js/2.54248233.chunk.js.LICENSE.txt",
+    "static/css/2.ace36aee.chunk.css.map": "/static/css/2.ace36aee.chunk.css.map",
+    "static/css/main.ce3d48fd.chunk.css.map": "/static/css/main.ce3d48fd.chunk.css.map",
+    "static/js/2.a9dc6074.chunk.js.LICENSE.txt": "/static/js/2.a9dc6074.chunk.js.LICENSE.txt",
     "static/media/Mushroom.png": "/static/media/Mushroom.2717ed70.png",
     "static/media/Slime.png": "/static/media/Slime.b29de028.png",
-    "static/media/UserRegPage.css": "/static/media/background.d31eaa7a.jpg",
+    "static/media/EventTable.css": "/static/media/zak.22a663f5.png",
+    "static/media/UserRegPage.css": "/static/media/background.aa0b8062.jpg",
+    "static/media/EventPartyPage.css": "/static/media/event_background.fa107d95.png",
     "static/media/logo.svg": "/static/media/logo.ee7cd8ed.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.cea588d5.js",
-    "static/css/2.47e06e2e.chunk.css",
-    "static/js/2.54248233.chunk.js",
-    "static/css/main.2c6aacc3.chunk.css",
-    "static/js/main.a92b15f1.chunk.js"
+    "static/css/2.ace36aee.chunk.css",
+    "static/js/2.a9dc6074.chunk.js",
+    "static/css/main.ce3d48fd.chunk.css",
+    "static/js/main.2022f7f2.chunk.js"
   ]
 }

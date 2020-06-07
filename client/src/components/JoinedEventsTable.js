@@ -24,7 +24,6 @@ const JoinedEventsTable = (props) =>{
                 setJoinedEvents(joinedEvents.filter(v => v._id !== result.data.left_event_id))
             })
             .catch(console.log)
-
     }
     return (
         <div id = "joined_events_table_container">

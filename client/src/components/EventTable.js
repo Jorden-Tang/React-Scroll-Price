@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField'
 import EventDetailPage from '../views/EventDetailPage'
 import {Link} from 'react-router-dom'
 import {useHistory} from 'react-router-dom'
+import { withTheme } from '@material-ui/core'
 
 
 const EventTable = (props) =>{
@@ -35,12 +36,9 @@ const EventTable = (props) =>{
         onTotalPageChange(events.length)
     }, [events])
 
-
-    function buyerExists(arr, ID) {
-        return arr.some(function(el) {
-          return el.buyerID === ID;
-        }); 
-    }
+    function refreshPage() {
+        window.location.reload(false);
+      }
 
     function getFormattedDate(offsetByDay) {
         var date = new Date(Date.now() + offsetByDay * 1000 * 60 * 60 * 24);
@@ -103,9 +101,9 @@ const EventTable = (props) =>{
         setDataIndexRange({start: ((e.target.value - 1) * itemPerPage) , end: (e.target.value * itemPerPage) - 1 })
     }
 
-    const formatedDate = (d) =>{
-        return (d.getMonth() + 1) % 12 + '/' + d.getDate() + ' ' + d.getHours() % 12 + ':' + d.getMinutes() + (d.getHours() > 12 ? 'PM' : 'AM');
-    }
+    // const formatedDate = (d) =>{
+    //     return (d.getMonth() + 1) % 12 + '/' + d.getDate() + ' ' + d.getHours() % 12 + ':' + d.getMinutes() + (d.getHours() > 12 ? 'PM' : 'AM');
+    // }
 
     const onJoinParty = (e, event_id) =>{
         // e.preventDefault();
@@ -137,6 +135,7 @@ const EventTable = (props) =>{
             <TextField  onChange = {onSearchBeginDateChange} id="datetime-local" label="BEGIN" type="datetime-local" defaultValue={getFormattedDate(0)} InputLabelProps={{ shrink: true}}  InputProps={{style: {backgroundColor: "rgba(0,0,0, 0.3)", color:"white"}}}/>
             <TextField  onChange = {onSearchEndDateChange} id="datetime-local" label="END" type="datetime-local" defaultValue={getFormattedDate(1)} InputLabelProps={{ shrink: true}}  InputProps={{style: {backgroundColor: "rgba(0,0,0, 0.3)", color:"white"}}}/>
             </div>
+            <button onClick = {refreshPage}style = {{width: "150px", height: "35px", fontSize: "1.5rem", backgroundColor: "orange", color: "black", borderRadius: "20px", padding: "3px"}}>Refresh</button>
         </div>
         <Table style = {{fontFamily: '"Balsamiq Sans", cursive, Pacifico'}} size="sm"  striped  hover variant = "dark">
             <thead>
@@ -154,7 +153,7 @@ const EventTable = (props) =>{
                     <tr key = {i}>
                         <td>{v.hostIGN}</td>
                         <td>{v.eventType.toUpperCase()}</td>
-                        <td>{formatedDate(new Date(v.startTime))}</td>
+                        <td>{(new Date(v.startTime)).toLocaleString()}</td>
                         <td>{v.buyerCount}</td>
                         <td style = {{display: "flex", justifyContent: "center"}}>
                             <div class = "detail_button">Detail

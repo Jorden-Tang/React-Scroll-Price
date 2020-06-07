@@ -157,9 +157,7 @@ const EventForm = (props) => {
         e.preventDefault();
         let a = buyerArray.slice();
         a[i][(e.target.name)] = e.target.value;
-        setBuyerArray(a);
-        console.log(a)
-       
+        setBuyerArray(a);       
 
         // setBuyerArray(tempArray);
       }

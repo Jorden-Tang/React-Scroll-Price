@@ -9,6 +9,14 @@ const HostedEventsTable = (props) =>{
     
     const [hostedEvents, setHostedEvents] = useState([]);
 
+    const onEventCancel = (e) =>{
+        e.preventDefault();
+        axios.delete("http://localhost:8000/api/event/" + e.target.value + "/user/" +localStorage.getItem('user_id') + "/delete", {withCredentials: true})
+            .then()
+            .catch(console.log)
+        setHostedEvents(hostedEvents.filter(v => v._id !== e.target.value));
+    }
+
     //fetch hosted events data
     useEffect(() => {
         axios.get("http://localhost:8000/api/user/" + localStorage.getItem('user_id') + "/hosted_events", {withCredentials: true})
@@ -18,7 +26,7 @@ const HostedEventsTable = (props) =>{
 
     return (
         <div id = "hosted_events_table_container">
-            <h1>Hosted Runs</h1>
+            <h1>Hosted Runs</h1>           
             <Table size ="sm" striped hover variant ="dark">
                 <thead>
                     <th>EVENT TYPE</th>
@@ -41,7 +49,8 @@ const HostedEventsTable = (props) =>{
                                         </div>
                                     ])}</span>
                             </div>
-                            <button class = "join_button">Cancel</button><button>Update</button></td>
+                            <button class = "join_button" onClick = {onEventCancel} value = {v._id} style = {{display: "inline"}}>Cancel</button>
+                            </td>
                         </tr>
                     ])}
                 </tbody>

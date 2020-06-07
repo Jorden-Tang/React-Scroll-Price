@@ -12,7 +12,7 @@ const NavBar = (props) =>{
             <Button class="nav_bar_link" variant="contained"  onClick = {()=>{ history.push("/")}}>
                 PRICE GUIDE
             </Button>
-            <Button class="nav_bar_link" variant="contained"  onClick = {()=>{ history.push("/event")}}>
+            <Button  class="nav_bar_link box bounce-7" variant="contained"  onClick = {()=>{ history.push("/event")}}>
                 EVENT PARTY
             </Button>
             <Button class="nav_bar_link" variant="contained"   onClick = {()=>{window.open("https://maplelegends.com/")}}>

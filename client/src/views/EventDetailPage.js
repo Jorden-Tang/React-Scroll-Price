@@ -5,6 +5,7 @@ import { useParams} from "react-router-dom";
 import axios from 'axios'
 import NotFoundPage from '../views/NotFoundPage'
 import '../static/css/EventDetailPage.css'
+import { orange } from '@material-ui/core/colors';
 const EventDetailpage = (props) =>{
    
     let {event_id} = useParams();
@@ -12,7 +13,6 @@ const EventDetailpage = (props) =>{
     const [buyerName, setBuyerName] = useState("");
     const [eventData, setEventData] = useState(null);
     useEffect(()=>{
-        console.log(event_id)
         axios.get("http://localhost:8000/api/event/" + event_id, {withCredentials: true})
             // .then((result)=>{setEventData(result.data.result)})
             .then((result) => {
@@ -27,8 +27,6 @@ const EventDetailpage = (props) =>{
     }
 
     const onBuyerJoinEvent = (e) =>{
-        console.log(e.target.value);
-        console.log(buyerName)
         axios.put("http://localhost:8000/api/event/" + event_id + "/user/" + localStorage.getItem("user_id") + "/join", {buyerType: e.target.value, buyerIGN: buyerName }, {withCredentials: true})
             .then((result)=>{
                 history.push("/event")
@@ -48,25 +46,26 @@ const EventDetailpage = (props) =>{
                     Go Back
                 </button>
                 <div class = "data_body">
-                <label>Host IGN:</label>
+                <label style = {{color: "orange"}}>Host IGN:</label>
                 <span>{eventData.hostIGN}</span>
                 </div>
                 <div class = "data_body">
-                <label>Time: </label>
+                <label style = {{color: "orange"}}>Time: </label>
                 <span>{new Date(Date.parse(eventData.startTime)).toTimeString()}</span>
                 </div>
                 <div class = "data_body">
                 </div>
                 {eventData.buyers.filter(p => p.buyerIGN === "").map((v,i) => [
                     <div key = {i} class = "data_body">
-                        <label>{"Buyer Spot "}</label>
-                        <span>{v.buyerType}</span>
-                    <input type = "textfield" variant onChange = {(e)=>(onBuyerNameInput(e))} value = {buyerName}>{}</input>
+                        <label style = {{color: "orange"}}>{"Buyer Spot:"}</label>
+                        <span>{v.buyerType.toUpperCase()}</span>
+                    <label style = {{color: "orange"}}>Buyer IGN </label>
+                    <input type = "textfield" variant onChange = {(e)=>(onBuyerNameInput(e))} value = {buyerName}></input>
                         <button value = {v.buyerType} onClick = {onBuyerJoinEvent}>RESERVE</button>
                     </div>
                 ])}
                 <div class ="data_body" style = {{}}>
-                    <label>Description:</label>
+                    <label style = {{color: "orange"}}>Description:</label>
                 </div>
                 <div id = "description"> <span >{eventData.description}</span> </div>
             </div>
