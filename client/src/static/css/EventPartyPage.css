@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap');
 
 *{
     margin: 0px;
@@ -10,9 +10,9 @@
     width: 100vw;
     height: 2000px;
     background-image: url("../images/event_background.png");
-    background-repeat: repeat-y;
+    background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: fixed;
+    background-size: cover;
     display: cover;
     flex-direction: column;
     align-items: center;
@@ -59,8 +59,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin-right: 20px;
+    color:black;
+    font-family: 'Balsamiq Sans', cursive , sans-serif;
 }
 
 #create_event_button:hover{

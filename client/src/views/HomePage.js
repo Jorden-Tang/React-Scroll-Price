@@ -8,7 +8,6 @@ import NavBar from '../components/NavBar'
 import auth from '../auth/auth'
 import LogOutButton from '../components/LogOutButton'
 import TextField from '@material-ui/core/TextField'
-
 import "../static/css/HomePage.css"
 import axios from 'axios'
 const HomePage = (props) => {
@@ -50,7 +49,7 @@ const HomePage = (props) => {
     
     return(
         <div className = "body">
-            <div style = {{width: "100%", height: "auto", position: "sticky", top: "0", zIndex:"11"}}>
+            <div style = {{width: "100vw", height: "auto", position: "sticky", top: "0", zIndex:"11"}}>
             {auth.isAuth() ?  
             <div style= {{height: "90px",backgroundColor: "rgba(224, 219, 219, 0.5)", display: "flex", flexDirection: "row", alignItems: "center"}}>
                 <NavBar/>
@@ -61,7 +60,7 @@ const HomePage = (props) => {
             </div>
             
         
-        <div className = "header">
+        <div class= "header">
             <img className = "header_img" src = {require("../static/images/Mushroom.png")} alt = "mushmom"></img>
             <div style= {{display: "flex", flexDirection: "column", justifyContent: "space-around"} }>
                 <h1>Fruit's Scroll Side</h1>
@@ -75,13 +74,12 @@ const HomePage = (props) => {
         </div>
         
 
-        <Container fluid = "sm" style = {{width: "100%"}}>
-        <Row style= {{display: "flex", justifyContent: "space-evenly"}}>
+        <div class = "scroll_price_wrapper">
             {percentArray.map((percent)=> [
-                <Col xs= "12" md="6" lg="4" xl="3" style = {{width: "300px"}} > 
-                <Table size="sm"  striped  hover variant = "dark">
+                <div class = "item" >
+                <div class = {`percent_header percent_header_${percent}`}>{percent}%</div>
+                <Table size="sm" striped  hover variant = "dark">
                     <thead>
-                    <h1>{percent}%</h1>
                         <tr>
                             <th>Equip</th>
                             <th>Stat</th>
@@ -105,9 +103,9 @@ const HomePage = (props) => {
                 )}
                     </tbody>
                 </Table>
-            </Col>
+            </div>
             ])}
-            <Col xs= "12" md="6" lg="4" xl="3">
+             <div  class = "item">
                 <Table size="sm"  striped  hover variant = "dark"> 
                     <thead>
                         <h1>Misc</h1>
@@ -134,9 +132,8 @@ const HomePage = (props) => {
                         )}
                     </tbody>
                 </Table>
-            </Col>
-        </Row>
-        </Container>
+            </div>
+        </div>
         </div>
     )
 }
