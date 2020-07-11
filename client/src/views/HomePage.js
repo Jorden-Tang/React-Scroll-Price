@@ -78,7 +78,7 @@ const HomePage = (props) => {
             {percentArray.map((percent)=> [
                 <div class = "item" >
                 <div class = {`percent_header percent_header_${percent}`}>{percent}%</div>
-                <Table size="sm" striped  hover variant = "dark">
+                <Table size="sm" striped  hover variant = "dark" >
                     <thead>
                         <tr>
                             <th>Equip</th>
@@ -97,7 +97,7 @@ const HomePage = (props) => {
                     {v.scrollPrice[0] < 1000000 ? <td>{(v.scrollPrice[0]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[0]/1000000).toFixed(1) + "M"}</td> }
                     {v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)] < 1000000 ? <td>{(v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[Math.floor((v.scrollPrice.length - 1)/2)]/1000000).toFixed(1) + "M"}</td> }
                     {v.scrollPrice[v.scrollPrice.length - 1] < 1000000 ? <td>{(v.scrollPrice[v.scrollPrice.length - 1]/1000).toFixed(1) + "K"}</td> : <td>{(v.scrollPrice[v.scrollPrice.length - 1]/1000000).toFixed(1) + "M"}</td> }
-                    {auth.isAdminAuth() ?  <td> <button value = {v._id} onClick =  {(e, i) => {onDeleteRow(e,i)}}>Delete</button> </td>  : <td></td>}
+                    {auth.isAdminAuth() ?  <td><button value = {v._id} onClick =  {(e, i) => {onDeleteRow(e,i)}}>Delete</button> </td> : <></>}
                     </tr>
                 ]
                 )}
@@ -106,9 +106,10 @@ const HomePage = (props) => {
             </div>
             ])}
              <div  class = "item">
+             <div class = "percent_header">Misc</div>
                 <Table size="sm"  striped  hover variant = "dark"> 
+                    
                     <thead>
-                        <h1>Misc</h1>
                         <tr>
                             <th>Equip</th>
                             <th>Stat</th>
