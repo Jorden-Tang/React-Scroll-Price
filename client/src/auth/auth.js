@@ -44,7 +44,6 @@ class Auth{
         // console.log("admin is " + this.adminAuth)
         let admin_id = localStorage.getItem("admin_id")
         if(admin_id){
-            console.log(admin_id);
             return true;
         }
         else{

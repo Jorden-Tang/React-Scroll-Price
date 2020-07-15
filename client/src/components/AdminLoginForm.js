@@ -35,9 +35,6 @@ export default ({sendApiRequest}) =>{
                         history.push("/admin")
                     }
                 }
-                else{
-                    console.log("else")
-                }
             })
             .catch((err)=> console.log)
     }

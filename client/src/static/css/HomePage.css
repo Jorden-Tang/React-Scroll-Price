@@ -12,7 +12,7 @@
 .body{
     text-align: center;
     width: 100vw;
-    height: auto;
+    height: 100%;
     background-image: url("../images/background.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -76,8 +76,8 @@ Table{
     color:  white;
     font-size: 3rem;
     font-family: 'Balsamiq Sans', cursive, Pacifico;
-    background-color: rgba(139, 133, 133, 0.2);
-    border-radius: 20px;
+    background-color: rgba(116, 109, 109, 0.3);
+    border-radius: 5px;
 }
 
 .item .percent_header_10{
