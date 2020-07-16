@@ -59,11 +59,11 @@ Table{
 }
 
 .scroll_price_wrapper{
-    width: 90%;
+    width: 95%;
     height: 100%;
     display: grid;
     margin: 0 auto;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
     grid-template-rows: auto;
     grid-auto-rows: auto;
     grid-column-gap: 20px;
