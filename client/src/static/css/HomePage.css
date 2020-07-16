@@ -12,7 +12,7 @@
 .body{
     text-align: center;
     width: 100vw;
-    height: 100%;
+    height: auto;
     background-image: url("../images/background.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -68,6 +68,7 @@ Table{
     grid-auto-rows: auto;
     grid-column-gap: 20px;
     grid-row-gap: 20px;
+    z-index: 10;
 }
 
 .item .percent_header{
