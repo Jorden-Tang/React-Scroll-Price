@@ -8,7 +8,7 @@
 
 #event_party_container{
     width: 100vw;
-    height: 2000px;
+    height: 5900px;
     background-image: url("../images/event_background.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -16,11 +16,12 @@
     display: cover;
     flex-direction: column;
     align-items: center;
+
 }
 
 
 #event_party_body{
-    width: 100%
+    width: 100%;
 }
 
 #event_party_table_form_container{

@@ -59,7 +59,6 @@ const HomePage = (props) => {
             : <UserLoginForm></UserLoginForm>}
             </div>
             
-        
         <div class= "header">
             <img className = "header_img" src = {require("../static/images/Mushroom.png")} alt = "mushmom"></img>
             <div style= {{display: "flex", flexDirection: "column", justifyContent: "space-around"} }>

@@ -9,7 +9,7 @@
     background-image: url("../images/event_background.png");
     background-repeat: repeat-y;
     background-attachment: fixed;
-    background-size: fixed;
+    background-size: cover;
     display: cover;
     flex-direction: column;
     align-items: center;
@@ -26,7 +26,6 @@
     justify-content: center;
     align-items: center;
 }
-
 
 #event_detail_page_body .data_body{
     display: flex;
